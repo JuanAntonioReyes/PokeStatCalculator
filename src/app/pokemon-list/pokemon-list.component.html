@@ -1,0 +1,12 @@
+<h2>POKEMON LIST:</h2>
+
+<table border="1">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+	</tr>
+	<tr *ngFor="let pokemon of pokemonList" (click)="selectPokemon(pokemon)">
+		<td>#{{ pokemon.id }}</td>
+		<td>{{ pokemon.name }}</td>
+	</tr>
+</table>

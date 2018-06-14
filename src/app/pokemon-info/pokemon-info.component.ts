@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Pokemon } from '../pokemon';
 
 @Component({
@@ -9,7 +9,9 @@ import { Pokemon } from '../pokemon';
 
 export class PokemonInfoComponent implements OnInit {
 
-	pokemon: Pokemon = {
+	@Input() pokemon: Pokemon;
+
+/*	pokemon: Pokemon = {
 		id: 1,
 		name: 'Bulbasaur',
 		level: 1,
@@ -21,7 +23,7 @@ export class PokemonInfoComponent implements OnInit {
 			spDefense: 1,
 			speed: 1
 		}
-	}
+	}*/
 
   constructor() { }
 
