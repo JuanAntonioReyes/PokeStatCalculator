@@ -10,24 +10,9 @@ import { Pokemon } from './pokemon';
 export class AppComponent {
   title = 'PokeStat Calculator';
 
-  //public currentPokemon: Pokemon;
-
-  public currentPokemon: Pokemon = {
-		id: 1,
-		name: 'Bulbasaur',
-		level: 1,
-		stats: {
-			hp: 1,
-			attack: 1,
-			defense: 1,
-			spAttack: 1,
-			spDefense: 1,
-			speed: 1
-		}
-	}
+  public currentPokemon: Pokemon = null;
 
   pokemonSelected(pokemon) {
-		//console.log(pokemon);
 		this.currentPokemon = pokemon;
   }
 
