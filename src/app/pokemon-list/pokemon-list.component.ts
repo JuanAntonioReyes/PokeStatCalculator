@@ -25,7 +25,7 @@ export class PokemonListComponent implements OnInit {
   }
 
   getPokemon(): void {
-    this.pokemonList = this.pokemonService.getPokemon();
+    this.pokemonService.getPokemon().subscribe(pokemonList => this.pokemonList = pokemonList);
   }
 
 }

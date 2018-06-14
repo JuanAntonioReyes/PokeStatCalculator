@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { POKEMONLIST } from './mock-pokemon';
 import { Pokemon } from './pokemon';
 
@@ -10,7 +11,7 @@ export class PokemonService {
 
   constructor() { }
 
-  getPokemon(): Pokemon[] {
-  	return POKEMONLIST;
+  getPokemon(): Observable<Pokemon[]> {
+  	return of(POKEMONLIST);
   }
 }
