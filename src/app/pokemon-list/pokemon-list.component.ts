@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { POKEMONLIST } from '../mock-pokemon';
+import { PokemonService } from '../pokemon.service';
 import { Pokemon } from '../pokemon';
 
 @Component({
@@ -9,18 +9,23 @@ import { Pokemon } from '../pokemon';
 })
 export class PokemonListComponent implements OnInit {
 
-	pokemonList = POKEMONLIST;
+	pokemonList: Pokemon[];
 
 	@Output()
   selectedPokemon: EventEmitter<Pokemon> = new EventEmitter<Pokemon>();
 
-	selectPokemon(pokemon: Pokemon): void {
-		this.selectedPokemon.emit(pokemon);
-	}
-
-  constructor() { }
+  constructor(private pokemonService: PokemonService) { }
 
   ngOnInit() {
+    this.getPokemon();
+  }
+
+  selectPokemon(pokemon: Pokemon): void {
+    this.selectedPokemon.emit(pokemon);
+  }
+
+  getPokemon(): void {
+    this.pokemonList = this.pokemonService.getPokemon();
   }
 
 }
