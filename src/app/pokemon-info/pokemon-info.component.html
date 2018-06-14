@@ -1,3 +1,14 @@
-<p>
-  pokemon-info works!
-</p>
+<h2>{{ pokemon.name }} (#{{ pokemon.id }})</h2>
+<label>Level
+	<input [(ngModel)]="pokemon.level" placeholder="level">
+</label>
+
+Level: {{ pokemon.level }}<br>
+<br>
+STATS:<br>
+HP: {{ pokemon.stats.hp }}<br>
+Attack: {{ pokemon.stats.attack }}<br>
+Defense: {{ pokemon.stats.defense }}<br>
+Special Attack: {{ pokemon.stats.spAttack }}<br>
+Special Defense: {{ pokemon.stats.spDefense }}<br>
+Speed: {{ pokemon.stats.speed }}<br>
