@@ -2,7 +2,7 @@ export class Pokemon {
 	id: number;
 	name: string;
 	level: number;
-	stats: {
+	baseStats: {
 		hp: number;
 		attack: number;
 		defense: number;

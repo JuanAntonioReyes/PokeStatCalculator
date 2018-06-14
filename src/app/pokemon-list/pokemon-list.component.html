@@ -1,12 +1,18 @@
-<h2>POKEMON LIST:</h2>
+<div *ngIf="pokemonList.length!==0; else noLoadedPokemon">
+	<h2>POKEMON LIST:</h2>
 
-<table border="1">
-	<tr>
-		<th>ID</th>
-		<th>Name</th>
-	</tr>
-	<tr *ngFor="let pokemon of pokemonList" (click)="selectPokemon(pokemon)">
-		<td>#{{ pokemon.id }}</td>
-		<td>{{ pokemon.name }}</td>
-	</tr>
-</table>
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+		</tr>
+		<tr *ngFor="let pokemon of pokemonList" (click)="selectPokemon(pokemon)">
+			<td>#{{ pokemon.id }}</td>
+			<td>{{ pokemon.name }}</td>
+		</tr>
+	</table>
+</div>
+
+<ng-template #noLoadedPokemon>
+	<h3>Please, wait while we load the Pokemon data...</h3>
+</ng-template>
