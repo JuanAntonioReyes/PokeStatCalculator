@@ -3,12 +3,41 @@
 
 	<table border="1">
 		<tr>
-			<th>ID</th>
-			<th>Name</th>
+
+			<th (click)="changeListSorting('id')">
+				ID <span *ngIf="sortListBy==='id'; then showOrder"></span>
+			</th>
+			<th (click)="changeListSorting('name')">
+				Name <span *ngIf="sortListBy==='name'; then showOrder"></span>
+			</th>
+			<th (click)="changeListSorting('hp')">
+				HP <span *ngIf="sortListBy==='hp'; then showOrder"></span>
+			</th>
+			<th (click)="changeListSorting('attack')">
+				Attack <span *ngIf="sortListBy==='attack'; then showOrder"></span>
+			</th>
+			<th (click)="changeListSorting('defense')">
+				Defense <span *ngIf="sortListBy==='defense'; then showOrder"></span>
+			</th>
+			<th (click)="changeListSorting('spAttack')">
+				Special Attack <span *ngIf="sortListBy==='spAttack'; then showOrder"></span>
+			</th>
+			<th (click)="changeListSorting('spDefense')">
+				Special Defense <span *ngIf="sortListBy==='spDefense'; then showOrder"></span>
+			</th>
+			<th (click)="changeListSorting('speed')">
+				Speed <span *ngIf="sortListBy==='speed'; then showOrder"></span>
+			</th>
 		</tr>
-		<tr *ngFor="let pokemon of pokemonList" (click)="selectPokemon(pokemon)">
+		<tr *ngFor="let pokemon of pokemonList | order:sortListBy:reverseList" (click)="selectPokemon(pokemon)">
 			<td>#{{ pokemon.id }}</td>
 			<td>{{ pokemon.name }}</td>
+			<td>{{ pokemon.baseStats.hp }}</td>
+			<td>{{ pokemon.baseStats.attack }}</td>
+			<td>{{ pokemon.baseStats.defense }}</td>
+			<td>{{ pokemon.baseStats.spAttack }}</td>
+			<td>{{ pokemon.baseStats.spDefense }}</td>
+			<td>{{ pokemon.baseStats.speed }}</td>
 		</tr>
 	</table>
 </div>
@@ -16,3 +45,9 @@
 <ng-template #noLoadedPokemon>
 	<h3>Please, wait while we load the Pokemon data...</h3>
 </ng-template>
+
+<ng-template #showOrder>
+	<span *ngIf="reverseList===1; then ascending else descending"></span>
+</ng-template>
+<ng-template #descending>▼</ng-template>
+<ng-template #ascending>▲</ng-template>

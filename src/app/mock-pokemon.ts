@@ -19,70 +19,70 @@ export const POKEMONLIST: Pokemon[] = [
 	{
 		id: 2,
 		name: 'Ivysaur',
-		level: 1,
+		level: 4,
 		baseStats: {
-			hp: 1,
-			attack: 1,
-			defense: 1,
-			spAttack: 1,
-			spDefense: 1,
-			speed: 1
+			hp: 4,
+			attack: 4,
+			defense: 4,
+			spAttack: 4,
+			spDefense: 4,
+			speed: 4
 		}
 	},
 
 	{
 		id: 3,
 		name: 'Venusaur',
-		level: 1,
+		level: 6,
 		baseStats: {
-			hp: 1,
-			attack: 1,
-			defense: 1,
-			spAttack: 1,
-			spDefense: 1,
-			speed: 1
+			hp: 6,
+			attack: 6,
+			defense: 6,
+			spAttack: 6,
+			spDefense: 6,
+			speed: 6
 		}
 	},
 
 	{
 		id: 4,
 		name: 'Charmander',
-		level: 1,
+		level: 6,
 		baseStats: {
-			hp: 1,
-			attack: 1,
-			defense: 1,
-			spAttack: 1,
-			spDefense: 1,
-			speed: 1
+			hp: 6,
+			attack: 6,
+			defense: 6,
+			spAttack: 6,
+			spDefense: 6,
+			speed: 6
 		}
 	},
 
 	{
 		id: 5,
 		name: 'Charmeleon',
-		level: 1,
+		level: 9,
 		baseStats: {
-			hp: 1,
-			attack: 1,
-			defense: 1,
-			spAttack: 1,
-			spDefense: 1,
-			speed: 1
+			hp: 9,
+			attack: 9,
+			defense: 9,
+			spAttack: 9,
+			spDefense: 9,
+			speed: 9
 		}
 	},
 
 	{
 		id: 6,
 		name: 'Charizard',
-		level: 1,
+		level: 3,
 		baseStats: {
-			hp: 1,
-			attack: 1,
-			defense: 1,
-			spAttack: 1,
-			spDefense: 1,
-			speed: 1
+			hp: 3,
+			attack: 3,
+			defense: 3,
+			spAttack: 3,
+			spDefense: 3,
+			speed: 3
 		}
 	}
 

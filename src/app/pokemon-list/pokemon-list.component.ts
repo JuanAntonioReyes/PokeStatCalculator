@@ -11,6 +11,9 @@ export class PokemonListComponent implements OnInit {
 
 	pokemonList: Pokemon[];
 
+  sortListBy: string = 'id';
+  reverseList: number = -1;
+
 	@Output()
   selectedPokemon: EventEmitter<Pokemon> = new EventEmitter<Pokemon>();
 
@@ -26,6 +29,11 @@ export class PokemonListComponent implements OnInit {
 
   getPokemon(): void {
     this.pokemonService.getPokemon().subscribe(pokemonList => this.pokemonList = pokemonList);
+  }
+
+  changeListSorting(sortListBy): void {
+    this.sortListBy = sortListBy;
+    this.reverseList *= -1;
   }
 
 }

@@ -6,6 +6,8 @@ import { Pokemon } from './pokemon';
 
 import { POKEMONLIST } from './mock-pokemon';
 
+const numberOfPokemon = 25;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,21 +19,25 @@ export class PokemonService {
   constructor(private http: HttpClient) { }
 
 	getPokemon(): Observable<any> {
-		let pokemonList = [];
+		/*let pokemonList = [];
 		let observableList: Observable<any>[] = [];
 
-		for (let i = 1; i < 11; i++) {
+		for (let i = 1; i < (numberOfPokemon + 1); i++) {
 			observableList.push(this.http.get(this.baseApiUrl + i));
 		}
 
 		forkJoin(observableList)
-			.subscribe(data => {
-				data.forEach(pokeData => {
-					pokemonList.push(this.makePokemon(pokeData));
-				});
-			});
+			.subscribe(
+				data => {
+					data.forEach((pokeData, i) => {
+						pokemonList.push(this.makePokemon(pokeData));
+					});
+				},
 
-		return of(pokemonList);
+			);
+
+		return of(pokemonList);*/
+		return of(POKEMONLIST);
 	}
 
 	makePokemon(data): Pokemon {
