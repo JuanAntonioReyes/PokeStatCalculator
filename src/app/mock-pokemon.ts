@@ -9,11 +9,11 @@ export const POKEMONLIST: Pokemon[] = [
 		spriteUrl: '#',
 		baseStats: {
 			hp: 1,
-			attack: 1,
-			defense: 1,
-			spAttack: 1,
-			spDefense: 1,
-			speed: 1
+			attack: 2,
+			defense: 3,
+			spAttack: 4,
+			spDefense: 5,
+			speed: 6
 		}
 	},
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Pokemon } from '../pokemon';
+import { Pokemon, STATS_NAMES } from '../pokemon';
 
 @Component({
   selector: 'app-pokemon-info',
@@ -9,11 +9,16 @@ import { Pokemon } from '../pokemon';
 
 export class PokemonInfoComponent implements OnInit {
 
+	statsNames: string[][];
+
 	@Input() pokemon: Pokemon;
 
-  constructor() { }
+  constructor() {
+  	this.statsNames = STATS_NAMES;
+  }
 
   ngOnInit() {
+
   }
 
 }
