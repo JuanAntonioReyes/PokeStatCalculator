@@ -15,11 +15,11 @@ export class PokemonService {
 	private baseApiUrl: string = 'https://pokeapi.co/api/v2/pokemon/';
 
 	pokemonList: Pokemon[] = [];
-	numberOfPokemon: number = 10;
+	numberOfPokemon: number = 5;
 
   constructor(private http: HttpClient) { }
 
-	getPokemon(): /*Observable<Pokemon[]>*/void {
+	getPokemon(): Observable<Pokemon[]>/*void*/ {
 		//let pokemonList: Pokemon[] = [];
 		//let observableList: Observable<Object>[] = [];
 
@@ -38,7 +38,7 @@ export class PokemonService {
 				}
 			);*/
 
-		//return of(pokemonList);
+		return of(this.pokemonList);
 		//return of(POKEMONLIST);
 	}
 

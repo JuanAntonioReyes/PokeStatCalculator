@@ -9,7 +9,7 @@ import { Pokemon } from '../pokemon';
 })
 export class PokemonListComponent implements OnInit {
 
-	//pokemonList: Pokemon[];
+	pokemonList: Pokemon[] = [];
 
   sortListBy: string = 'id';
   reverseList: number = -1;
@@ -20,16 +20,16 @@ export class PokemonListComponent implements OnInit {
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit() {
-    this.pokemonService.getPokemon();
+    this.getPokemon();
   }
 
   selectPokemon(pokemon: Pokemon): void {
     this.selectedPokemon.emit(pokemon);
   }
 
-/*  getPokemon(): void {
-    this.pokemonService.getPokemon().subscribe(lista => this.pokemonList = lista);
-  }*/
+  getPokemon(): void {
+    this.pokemonService.getPokemon().subscribe(pokemonList => this.pokemonList = pokemonList);
+  }
 
   changeListSorting(sortListBy): void {
     this.sortListBy = sortListBy;

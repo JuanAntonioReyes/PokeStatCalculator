@@ -1,6 +1,6 @@
-<div *ngIf="pokemonService.pokemonList.length < pokemonService.numberOfPokemon">
+<div *ngIf="pokemonList.length < pokemonService.numberOfPokemon">
 	<h3>Please, wait while we load the data...<br>
-	Pokemon: {{ pokemonService.pokemonList.length }} / {{ pokemonService.numberOfPokemon }}</h3>
+	Pokemon: {{ pokemonList.length }} / {{ pokemonService.numberOfPokemon }}</h3>
 </div>
 <div>
 	<h2>POKEMON LIST:</h2>
@@ -33,7 +33,7 @@
 				Speed <span *ngIf="sortListBy==='speed'; then showOrder"></span>
 			</th>
 		</tr>
-		<tr *ngFor="let pokemon of pokemonService.pokemonList | order:sortListBy:reverseList" (click)="selectPokemon(pokemon)">
+		<tr *ngFor="let pokemon of pokemonList | order:sortListBy:reverseList:pokemonList.length" (click)="selectPokemon(pokemon)">
 			<td>#{{ pokemon.id }}</td>
 			<td>{{ pokemon.name | uppercase }}</td>
 			<td>{{ pokemon.baseStats.hp }}</td>

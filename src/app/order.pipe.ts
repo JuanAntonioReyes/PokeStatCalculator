@@ -5,12 +5,17 @@ let sortByValue = null;
 let reverseSort = -1;
 
 @Pipe({
-  name: 'order'
+  name: 'order'/*,
+  pure: false*/
 })
 
 export class OrderPipe implements PipeTransform {
 
-	transform(value: Pokemon[], sortListBy: string, reverseList: number): Pokemon[] {
+	// UGLY PATCH - TRY TO FIND A BETTER SOLUTION
+	// The "elements" parameter is passed to force the pipe to be called when
+	// we add pokemon to the list with push (The pure pipe needs a pure change
+	// to be called, like the "elements" value that changes with the list length)
+	transform(value: Pokemon[], sortListBy: string, reverseList: number, elements: number): Pokemon[] {
 		sortByValue = sortListBy;
 		reverseSort = reverseList;
 
