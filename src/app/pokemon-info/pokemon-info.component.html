@@ -7,8 +7,8 @@
 		<input [(ngModel)]="pokemon.level" type="number" placeholder="level">
 	</label>
 	<label>Nature
-		<select name="nature">
-			<option *ngFor="let nature of pokemonService.naturesList" value="{{ nature }}">
+		<select [(ngModel)]="pokemon.nature" name="nature">
+			<option *ngFor="let nature of pokemonService.naturesList | naturesSort" value="{{ nature }}">
 				{{ nature | uppercase }}
 			</option> 
 		</select>

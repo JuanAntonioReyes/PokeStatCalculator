@@ -21,20 +21,20 @@ export class PokemonService {
 	private baseApiUrl: string = 'https://pokeapi.co/api/v2/';
 
   constructor(private http: HttpClient) {
-  	this.numberOfPokemon = 5;
+  	this.numberOfPokemon = 50;
   	this.naturesList = [];
   }
 
 	getPokemon(): Observable<Pokemon[]> {
-		let pokemonList: Pokemon[] = [];
+/*		let pokemonList: Pokemon[] = [];
 
 		for (let i = 1; i <= this.numberOfPokemon; i++) {
 			this.http.get(this.baseApiUrl + 'pokemon/' + i)
 			.subscribe( data => pokemonList.push(this.makePokemon(data)) );
 		}
 
-		return of(pokemonList);
-		//return of(POKEMONLIST);
+		return of(pokemonList);*/
+		return of(POKEMONLIST);
 	}
 
 	setStatsAffectingNatures(): void {
@@ -43,7 +43,6 @@ export class PokemonService {
 			this.http.get(this.baseApiUrl + 'stat/' + i)
 			.subscribe( data => this.processStat(data) );
 		}
-		console.log(this.naturesList);
 	}
 
 	makePokemon(data): Pokemon {
@@ -51,6 +50,7 @@ export class PokemonService {
 			id: data.id,
 			name: data.name,
 			level: 1,
+			nature: 'adamant',
 			spriteUrl: data.sprites.front_default,
 			baseStats: {
 				hp: data.stats[5].base_stat,
@@ -68,9 +68,8 @@ export class PokemonService {
 	processStat(data): void {
 		data.affecting_natures.increase.forEach(inc => {
 			STATSLIST[(data.id - 1)].affectingNatures.increase.push(inc.name);
-			// inc.name will take the name of all the available natures, so
-			// we can add them to the natures list to have them available
-			// for the user
+			// TEMPORAL
+			// - TODO - Load the natures from the API (There's some natures that don't have any effect)
 			this.naturesList.push(inc.name);
 		});
 
