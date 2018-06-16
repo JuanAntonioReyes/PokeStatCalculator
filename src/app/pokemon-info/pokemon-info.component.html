@@ -13,12 +13,12 @@
 		<span *ngIf="checkStatIsHighest(stat[0])"
 			style="color:green;"
 			title="Highest Base Stat">
-			✓
+			✔
 		</span>
 		<span *ngIf="checkStatIsLowest(stat[0])"
 			style="color:red;"
 			title="Lowest Base Stat">
-			X
+			✘
 		</span>
 		{{ stat[1] }}: {{ pokemon.baseStats[stat[0]] }}<br>
 	</div>
