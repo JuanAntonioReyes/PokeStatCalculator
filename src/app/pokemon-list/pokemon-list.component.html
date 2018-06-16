@@ -1,4 +1,8 @@
-<div *ngIf="pokemonList.length!==0; else noLoadedPokemon">
+<div *ngIf="pokemonService.pokemonList.length < pokemonService.numberOfPokemon">
+	<h3>Please, wait while we load the data...<br>
+	Pokemon: {{ pokemonService.pokemonList.length }} / {{ pokemonService.numberOfPokemon }}</h3>
+</div>
+<div>
 	<h2>POKEMON LIST:</h2>
 
 	<table border="1">
@@ -29,9 +33,9 @@
 				Speed <span *ngIf="sortListBy==='speed'; then showOrder"></span>
 			</th>
 		</tr>
-		<tr *ngFor="let pokemon of pokemonList | order:sortListBy:reverseList" (click)="selectPokemon(pokemon)">
+		<tr *ngFor="let pokemon of pokemonService.pokemonList | order:sortListBy:reverseList" (click)="selectPokemon(pokemon)">
 			<td>#{{ pokemon.id }}</td>
-			<td>{{ pokemon.name }}</td>
+			<td>{{ pokemon.name | uppercase }}</td>
 			<td>{{ pokemon.baseStats.hp }}</td>
 			<td>{{ pokemon.baseStats.attack }}</td>
 			<td>{{ pokemon.baseStats.defense }}</td>
@@ -41,10 +45,6 @@
 		</tr>
 	</table>
 </div>
-
-<ng-template #noLoadedPokemon>
-	<h3>Please, wait while we load the Pokemon data...</h3>
-</ng-template>
 
 <ng-template #showOrder>
 	<span *ngIf="reverseList===1; then ascending else descending"></span>

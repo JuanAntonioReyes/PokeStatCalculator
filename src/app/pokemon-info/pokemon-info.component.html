@@ -1,5 +1,5 @@
 <div *ngIf="pokemon; else noSelectedPokemon">
-	<h2>{{ pokemon.name }} (#{{ pokemon.id }})</h2>
+	<h2>{{ pokemon.name | uppercase }} (#{{ pokemon.id }})</h2>
 	<label>Level
 		<input [(ngModel)]="pokemon.level" placeholder="level">
 	</label>

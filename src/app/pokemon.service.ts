@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, forkJoin } from 'rxjs';
+import { Observable, of/*, forkJoin*/ } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { Pokemon } from './pokemon';
 
 import { POKEMONLIST } from './mock-pokemon';
-
-const numberOfPokemon = 25;
 
 @Injectable({
   providedIn: 'root'
@@ -16,28 +14,32 @@ export class PokemonService {
 
 	private baseApiUrl: string = 'https://pokeapi.co/api/v2/pokemon/';
 
+	pokemonList: Pokemon[] = [];
+	numberOfPokemon: number = 10;
+
   constructor(private http: HttpClient) { }
 
-	getPokemon(): Observable<any> {
-		/*let pokemonList = [];
-		let observableList: Observable<any>[] = [];
+	getPokemon(): /*Observable<Pokemon[]>*/void {
+		//let pokemonList: Pokemon[] = [];
+		//let observableList: Observable<Object>[] = [];
 
-		for (let i = 1; i < (numberOfPokemon + 1); i++) {
-			observableList.push(this.http.get(this.baseApiUrl + i));
+		for (let i = 1; i < (this.numberOfPokemon + 1); i++) {
+			//observableList.push(this.http.get(this.baseApiUrl + i));
+			this.http.get(this.baseApiUrl + i)
+			.subscribe( data => this.pokemonList.push(this.makePokemon(data)) );
 		}
-
+/*
 		forkJoin(observableList)
 			.subscribe(
 				data => {
 					data.forEach((pokeData, i) => {
 						pokemonList.push(this.makePokemon(pokeData));
 					});
-				},
+				}
+			);*/
 
-			);
-
-		return of(pokemonList);*/
-		return of(POKEMONLIST);
+		//return of(pokemonList);
+		//return of(POKEMONLIST);
 	}
 
 	makePokemon(data): Pokemon {
