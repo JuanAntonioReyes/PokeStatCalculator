@@ -21,4 +21,28 @@ export class PokemonInfoComponent implements OnInit {
 
   }
 
+	checkStatIsHighest(stat): boolean {
+		let isHighest = true;
+
+		STATS_NAMES.forEach(statName => {
+			if (this.pokemon.baseStats[statName[0]] > this.pokemon.baseStats[stat]) {
+				isHighest = false;
+			}
+		});
+
+		return isHighest;
+	}
+
+	checkStatIsLowest(stat): boolean {
+		let isLowest = true;
+
+		STATS_NAMES.forEach(statName => {
+			if (this.pokemon.baseStats[statName[0]] < this.pokemon.baseStats[stat]) {
+				isLowest = false;
+			}
+		});
+
+		return isLowest;
+	}
+
 }

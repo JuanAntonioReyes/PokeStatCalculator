@@ -10,13 +10,9 @@
 	<strong>STATS at level {{ pokemon.level }}:</strong><br><br>
 
 	<div *ngFor="let stat of statsNames">
+		<span *ngIf="checkStatIsHighest(stat[0])">✓</span>
+		<span *ngIf="checkStatIsLowest(stat[0])">X</span>
 		{{ stat[1] }}: {{ pokemon.baseStats[stat[0]] }}<br>
-<!-- 		HP: {{ pokemon.baseStats.hp }}<br>
-		Attack: {{ pokemon.baseStats.attack }}<br>
-		Defense: {{ pokemon.baseStats.defense }}<br>
-		Special Attack: {{ pokemon.baseStats.spAttack }}<br>
-		Special Defense: {{ pokemon.baseStats.spDefense }}<br>
-		Speed: {{ pokemon.baseStats.speed }}<br> -->
 	</div>
 	
 </div>
