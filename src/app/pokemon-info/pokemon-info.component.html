@@ -10,8 +10,16 @@
 	<strong>STATS at level {{ pokemon.level }}:</strong><br><br>
 
 	<div *ngFor="let stat of statsNames">
-		<span *ngIf="checkStatIsHighest(stat[0])">✓</span>
-		<span *ngIf="checkStatIsLowest(stat[0])">X</span>
+		<span *ngIf="checkStatIsHighest(stat[0])"
+			style="color:green;"
+			title="Highest Base Stat">
+			✓
+		</span>
+		<span *ngIf="checkStatIsLowest(stat[0])"
+			style="color:red;"
+			title="Lowest Base Stat">
+			X
+		</span>
 		{{ stat[1] }}: {{ pokemon.baseStats[stat[0]] }}<br>
 	</div>
 	
