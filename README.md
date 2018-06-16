@@ -27,4 +27,4 @@ ng serve
 - Click on a Pokemon to display its data (You can sort the Pokemon list by clicking in the table titles)
 
 - Enter a level and the app will calculate the stats of the Pokemon on that level based on the base stats
-(The highest and lowest base stat will be marked)
+(The highest and lowest base stats will be marked)

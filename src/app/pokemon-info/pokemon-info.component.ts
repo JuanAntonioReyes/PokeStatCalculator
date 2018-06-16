@@ -45,4 +45,24 @@ export class PokemonInfoComponent implements OnInit {
 		return isLowest;
 	}
 
+	calculateStat(stat): number {
+		let statValue: number;
+
+		// iv, ep and nature not implemented yet, used neutral values
+		let iv = 0;
+		let ep = 0;
+		let natureMultiplier = 1;
+
+		let doublePlusIvEp = ( (this.pokemon.baseStats[stat] * 2) + iv + ep );
+		let commonValue = ( doublePlusIvEp * this.pokemon.level / 100 );
+
+		if (stat === 'hp') {
+			statValue = (commonValue + this.pokemon.level + 10);
+		} else {
+			statValue = ( (commonValue + 5) * natureMultiplier);
+		}
+
+		return Math.floor(statValue);
+	}
+
 }

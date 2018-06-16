@@ -4,7 +4,7 @@
 	<img src="{{ pokemon.spriteUrl }}"><br>
 
 	<label>Level
-		<input [(ngModel)]="pokemon.level" placeholder="level">
+		<input [(ngModel)]="pokemon.level" type="number" placeholder="level">
 	</label><br><br>
 
 	<strong>STATS at level {{ pokemon.level }}:</strong><br><br>
@@ -20,7 +20,8 @@
 			title="Lowest Base Stat">
 			✘
 		</span>
-		{{ stat[1] }}: {{ pokemon.baseStats[stat[0]] }}<br>
+		<!-- {{ stat[1] }}: {{ pokemon.baseStats[stat[0]] }}<br> -->
+		{{ stat[1] }}: ({{ pokemon.baseStats[stat[0]] }}) {{ calculateStat(stat[0]) }}<br>
 	</div>
 	
 </div>

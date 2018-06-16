@@ -20,13 +20,13 @@ export class PokemonService {
   constructor(private http: HttpClient) { }
 
 	getPokemon(): Observable<Pokemon[]> {
-/*		for (let i = 1; i < (this.numberOfPokemon + 1); i++) {
+		for (let i = 1; i < (this.numberOfPokemon + 1); i++) {
 			this.http.get(this.baseApiUrl + i)
 			.subscribe( data => this.pokemonList.push(this.makePokemon(data)) );
 		}
 
-		return of(this.pokemonList);*/
-		return of(POKEMONLIST);
+		return of(this.pokemonList);
+		//return of(POKEMONLIST);
 	}
 
 	makePokemon(data): Pokemon {

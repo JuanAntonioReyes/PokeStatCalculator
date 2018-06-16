@@ -17,6 +17,7 @@ export class OrderPipe implements PipeTransform {
 	// to be called, like the "elements" value that changes with the list length)
 	transform(value: Pokemon[], sortListBy: string, reverseList: number, elements: number): Pokemon[] {
 		sortByValue = sortListBy;
+		// 1 for min to max sorting, -1 for reverse (max to min)
 		reverseSort = reverseList;
 
 		return value.sort(compareByStat);
