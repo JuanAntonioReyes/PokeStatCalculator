@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of/*, forkJoin*/ } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { Pokemon } from './pokemon';
@@ -19,34 +19,23 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-	getPokemon(): Observable<Pokemon[]>/*void*/ {
-		//let pokemonList: Pokemon[] = [];
-		//let observableList: Observable<Object>[] = [];
-
-		for (let i = 1; i < (this.numberOfPokemon + 1); i++) {
-			//observableList.push(this.http.get(this.baseApiUrl + i));
+	getPokemon(): Observable<Pokemon[]> {
+/*		for (let i = 1; i < (this.numberOfPokemon + 1); i++) {
 			this.http.get(this.baseApiUrl + i)
 			.subscribe( data => this.pokemonList.push(this.makePokemon(data)) );
 		}
-/*
-		forkJoin(observableList)
-			.subscribe(
-				data => {
-					data.forEach((pokeData, i) => {
-						pokemonList.push(this.makePokemon(pokeData));
-					});
-				}
-			);*/
 
-		return of(this.pokemonList);
-		//return of(POKEMONLIST);
+		return of(this.pokemonList);*/
+		return of(POKEMONLIST);
 	}
 
 	makePokemon(data): Pokemon {
+		console.log(data.sprites.front_default);
 		let pokemon: Pokemon = {
 			id: data.id,
 			name: data.name,
 			level: 1,
+			spriteUrl: data.sprites.front_default,
 			baseStats: {
 				hp: data.stats[5].base_stat,
 				attack: data.stats[4].base_stat,

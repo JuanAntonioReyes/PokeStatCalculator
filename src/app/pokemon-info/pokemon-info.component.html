@@ -1,12 +1,14 @@
 <div *ngIf="pokemon; else noSelectedPokemon">
-	<h2>{{ pokemon.name | uppercase }} (#{{ pokemon.id }})</h2>
+	<h2>(#{{ pokemon.id }}) {{ pokemon.name | uppercase }}</h2>
+
+	<img src="{{ pokemon.spriteUrl }}"><br>
+
 	<label>Level
 		<input [(ngModel)]="pokemon.level" placeholder="level">
-	</label>
+	</label><br><br>
 
-	Level: {{ pokemon.level }}<br>
-	<br>
-	STATS:<br>
+	<strong>STATS at level {{ pokemon.level }}:</strong><br><br>
+
 	HP: {{ pokemon.baseStats.hp }}<br>
 	Attack: {{ pokemon.baseStats.attack }}<br>
 	Defense: {{ pokemon.baseStats.defense }}<br>

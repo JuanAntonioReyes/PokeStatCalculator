@@ -2,6 +2,7 @@ export class Pokemon {
 	id: number;
 	name: string;
 	level: number;
+	spriteUrl: string;
 	baseStats: {
 		hp: number;
 		attack: number;

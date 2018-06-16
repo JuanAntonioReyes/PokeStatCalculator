@@ -6,6 +6,7 @@ export const POKEMONLIST: Pokemon[] = [
 		id: 1,
 		name: 'Bulbasaur',
 		level: 1,
+		spriteUrl: '#',
 		baseStats: {
 			hp: 1,
 			attack: 1,
@@ -20,6 +21,7 @@ export const POKEMONLIST: Pokemon[] = [
 		id: 2,
 		name: 'Ivysaur',
 		level: 4,
+		spriteUrl: '#',
 		baseStats: {
 			hp: 4,
 			attack: 4,
@@ -34,6 +36,7 @@ export const POKEMONLIST: Pokemon[] = [
 		id: 3,
 		name: 'Venusaur',
 		level: 6,
+		spriteUrl: '#',
 		baseStats: {
 			hp: 6,
 			attack: 6,
@@ -48,6 +51,7 @@ export const POKEMONLIST: Pokemon[] = [
 		id: 4,
 		name: 'Charmander',
 		level: 6,
+		spriteUrl: '#',
 		baseStats: {
 			hp: 6,
 			attack: 6,
@@ -62,6 +66,7 @@ export const POKEMONLIST: Pokemon[] = [
 		id: 5,
 		name: 'Charmeleon',
 		level: 9,
+		spriteUrl: '#',
 		baseStats: {
 			hp: 9,
 			attack: 9,
@@ -76,6 +81,7 @@ export const POKEMONLIST: Pokemon[] = [
 		id: 6,
 		name: 'Charizard',
 		level: 3,
+		spriteUrl: '#',
 		baseStats: {
 			hp: 3,
 			attack: 3,
