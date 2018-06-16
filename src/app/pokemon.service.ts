@@ -3,6 +3,9 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { Pokemon } from './pokemon';
+import { Stat } from './stat';
+
+import { STATSLIST } from './stats-list';
 
 import { POKEMONLIST } from './mock-pokemon';
 
@@ -12,25 +15,38 @@ import { POKEMONLIST } from './mock-pokemon';
 
 export class PokemonService {
 
-	private baseApiUrl: string = 'https://pokeapi.co/api/v2/pokemon/';
+	numberOfPokemon: number = null;
+	naturesList: string[] = null;
 
-	pokemonList: Pokemon[] = [];
-	numberOfPokemon: number = 5;
+	private baseApiUrl: string = 'https://pokeapi.co/api/v2/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  	this.numberOfPokemon = 5;
+  	this.naturesList = [];
+  }
 
 	getPokemon(): Observable<Pokemon[]> {
-		for (let i = 1; i < (this.numberOfPokemon + 1); i++) {
-			this.http.get(this.baseApiUrl + i)
-			.subscribe( data => this.pokemonList.push(this.makePokemon(data)) );
+		let pokemonList: Pokemon[] = [];
+
+		for (let i = 1; i <= this.numberOfPokemon; i++) {
+			this.http.get(this.baseApiUrl + 'pokemon/' + i)
+			.subscribe( data => pokemonList.push(this.makePokemon(data)) );
 		}
 
-		return of(this.pokemonList);
+		return of(pokemonList);
 		//return of(POKEMONLIST);
 	}
 
+	setStatsAffectingNatures(): void {
+		// The stat 1 (HP) isn't affected by any nature
+		for (let i = 2, l = STATSLIST.length; i <= l; i++) {
+			this.http.get(this.baseApiUrl + 'stat/' + i)
+			.subscribe( data => this.processStat(data) );
+		}
+		console.log(this.naturesList);
+	}
+
 	makePokemon(data): Pokemon {
-		console.log(data.sprites.front_default);
 		let pokemon: Pokemon = {
 			id: data.id,
 			name: data.name,
@@ -47,5 +63,19 @@ export class PokemonService {
 		}
 
 		return pokemon;
+	}
+
+	processStat(data): void {
+		data.affecting_natures.increase.forEach(inc => {
+			STATSLIST[(data.id - 1)].affectingNatures.increase.push(inc.name);
+			// inc.name will take the name of all the available natures, so
+			// we can add them to the natures list to have them available
+			// for the user
+			this.naturesList.push(inc.name);
+		});
+
+		data.affecting_natures.decrease.forEach(dec => {
+			STATSLIST[(data.id - 1)].affectingNatures.decrease.push(dec.name);
+		});
 	}
 }

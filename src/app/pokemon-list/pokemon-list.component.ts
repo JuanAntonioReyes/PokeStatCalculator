@@ -1,6 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
-import { Pokemon, STATS_NAMES } from '../pokemon';
+
+import { Pokemon } from '../pokemon';
+import { Stat } from '../stat';
+
+import { STATSLIST } from '../stats-list';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -11,7 +15,7 @@ export class PokemonListComponent implements OnInit {
 
 	pokemonList: Pokemon[] = [];
 
-  statsNames: string[][];
+  stats: Stat[];
 
   sortListBy: string = 'id';
   reverseList: number = -1;
@@ -20,7 +24,7 @@ export class PokemonListComponent implements OnInit {
   selectedPokemon: EventEmitter<Pokemon> = new EventEmitter<Pokemon>();
 
   constructor(private pokemonService: PokemonService) {
-    this.statsNames = STATS_NAMES;
+    this.stats = STATSLIST;
   }
 
   ngOnInit() {

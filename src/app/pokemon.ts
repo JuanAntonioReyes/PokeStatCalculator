@@ -12,12 +12,3 @@ export class Pokemon {
 		speed: number;
 	}
 }
-
-export const STATS_NAMES: string[][] = [
-	['hp', 'HP'],
-	['attack', 'Attack'],
-	['defense', 'Defense'],
-	['spAttack', 'Special Attack'],
-	['spDefense', 'Special Defense'],
-	['speed', 'Speed']
-];

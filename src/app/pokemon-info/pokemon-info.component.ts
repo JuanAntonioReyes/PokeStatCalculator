@@ -1,5 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Pokemon, STATS_NAMES } from '../pokemon';
+import { PokemonService } from '../pokemon.service';
+
+import { Pokemon } from '../pokemon';
+import { Stat } from '../stat';
+
+import { STATSLIST } from '../stats-list';
 
 @Component({
   selector: 'app-pokemon-info',
@@ -9,23 +14,24 @@ import { Pokemon, STATS_NAMES } from '../pokemon';
 
 export class PokemonInfoComponent implements OnInit {
 
-	statsNames: string[][];
+	stats: Stat[];
+	naturesList: any[] = [];
 
 	@Input() pokemon: Pokemon;
 
-  constructor() {
-  	this.statsNames = STATS_NAMES;
+  constructor(private pokemonService: PokemonService) {
+  	this.stats = STATSLIST;
   }
 
   ngOnInit() {
-
+		this.pokemonService.setStatsAffectingNatures();
   }
 
-	checkStatIsHighest(stat): boolean {
+	checkStatIsHighest(statName): boolean {
 		let isHighest = true;
 
-		STATS_NAMES.forEach(statName => {
-			if (this.pokemon.baseStats[statName[0]] > this.pokemon.baseStats[stat]) {
+		this.stats.forEach(stat => {
+			if (this.pokemon.baseStats[statName] > this.pokemon.baseStats[stat.shortName]) {
 				isHighest = false;
 			}
 		});
@@ -33,11 +39,11 @@ export class PokemonInfoComponent implements OnInit {
 		return isHighest;
 	}
 
-	checkStatIsLowest(stat): boolean {
+	checkStatIsLowest(statName): boolean {
 		let isLowest = true;
 
-		STATS_NAMES.forEach(statName => {
-			if (this.pokemon.baseStats[statName[0]] < this.pokemon.baseStats[stat]) {
+		this.stats.forEach(stat => {
+			if (this.pokemon.baseStats[statName] < this.pokemon.baseStats[stat.shortName]) {
 				isLowest = false;
 			}
 		});
@@ -45,7 +51,7 @@ export class PokemonInfoComponent implements OnInit {
 		return isLowest;
 	}
 
-	calculateStat(stat): number {
+	calculateStat(statName): number {
 		let statValue: number;
 
 		// iv, ep and nature not implemented yet, used neutral values
@@ -53,10 +59,10 @@ export class PokemonInfoComponent implements OnInit {
 		let ep = 0;
 		let natureMultiplier = 1;
 
-		let doublePlusIvEp = ( (this.pokemon.baseStats[stat] * 2) + iv + ep );
+		let doublePlusIvEp = ( (this.pokemon.baseStats[statName] * 2) + iv + ep );
 		let commonValue = ( doublePlusIvEp * this.pokemon.level / 100 );
 
-		if (stat === 'hp') {
+		if (statName === 'hp') {
 			statValue = (commonValue + this.pokemon.level + 10);
 		} else {
 			statValue = ( (commonValue + 5) * natureMultiplier);
