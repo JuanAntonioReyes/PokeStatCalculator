@@ -15,7 +15,7 @@
 	</label><br><br>
 
 	<strong>STATS at level {{ pokemon.level }}:</strong><br><br>
-{{ naturesList }}
+
 	<div *ngFor="let stat of pokemonService.statsList">
 
 		{{ stat.name }} ({{ pokemon.baseStats[stat.shortName] }})
@@ -32,8 +32,9 @@
 		:
 
 		<strong>
-			{{ calculateStat(stat.shortName) }}<br>
+			{{ calculateStat(stat.id) }}<br>
 		</strong>
+		
 	</div>
 	
 </div>

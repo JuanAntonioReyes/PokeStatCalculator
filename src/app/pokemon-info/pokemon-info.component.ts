@@ -2,9 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
 
 import { Pokemon } from '../pokemon';
-//import { Stat } from '../stat';
-
-//import { STATSLIST } from '../stats-list';
+import { Stat } from '../stat';
 
 @Component({
   selector: 'app-pokemon-info',
@@ -14,17 +12,15 @@ import { Pokemon } from '../pokemon';
 
 export class PokemonInfoComponent implements OnInit {
 
-	//stats: Stat[];
 	naturesList: string[] = [];
 
 	@Input() pokemon: Pokemon;
 
   constructor(private pokemonService: PokemonService) {
-  	//this.stats = STATSLIST;
+
   }
 
   ngOnInit() {
-		//this.pokemonService.setStatsAffectingNatures();
 		this.getNatures();
   }
 
@@ -35,7 +31,6 @@ export class PokemonInfoComponent implements OnInit {
 	checkStatIsHighest(statName): boolean {
 		let isHighest = true;
 
-		//this.stats.forEach(stat => {
 		this.pokemonService.statsList.forEach(stat => {
 			if (this.pokemon.baseStats[statName] > this.pokemon.baseStats[stat.shortName]) {
 				isHighest = false;
@@ -48,7 +43,6 @@ export class PokemonInfoComponent implements OnInit {
 	checkStatIsLowest(statName): boolean {
 		let isLowest = true;
 
-		//this.stats.forEach(stat => {
 		this.pokemonService.statsList.forEach(stat => {
 			if (this.pokemon.baseStats[statName] < this.pokemon.baseStats[stat.shortName]) {
 				isLowest = false;
@@ -58,18 +52,30 @@ export class PokemonInfoComponent implements OnInit {
 		return isLowest;
 	}
 
-	calculateStat(statName): number {
+	calculateStat(statId): number {
+		let stat: Stat = this.pokemonService.statsList[(statId - 1)];
 		let statValue: number;
 
-		// iv, ep and nature not implemented yet, used neutral values
+		// iv and ep not implemented yet, used neutral values
 		let iv = 0;
 		let ep = 0;
+
 		let natureMultiplier = 1;
 
-		let doublePlusIvEp = ( (this.pokemon.baseStats[statName] * 2) + iv + ep );
+		if (stat.affectingNatures.increase.includes(this.pokemon.nature)){
+			console.log(stat.name + " increased by " + this.pokemon.nature + " nature.");
+			natureMultiplier = 1.1;
+		}
+
+		if (stat.affectingNatures.decrease.includes(this.pokemon.nature)){
+			console.log(stat.name + " decreased by " + this.pokemon.nature + " nature.");
+			natureMultiplier = 0.9;
+		}
+
+		let doublePlusIvEp = ( (this.pokemon.baseStats[stat.shortName] * 2) + iv + ep );
 		let commonValue = ( doublePlusIvEp * this.pokemon.level / 100 );
 
-		if (statName === 'hp') {
+		if (stat.shortName === 'hp') {
 			statValue = (commonValue + this.pokemon.level + 10);
 		} else {
 			statValue = ( (commonValue + 5) * natureMultiplier);

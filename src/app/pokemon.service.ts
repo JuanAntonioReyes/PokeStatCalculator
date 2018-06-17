@@ -10,8 +10,8 @@ import { STATSLIST } from './stats-list';
 // Mock pokemon list
 import { POKEMONLIST } from './mock-pokemon';
 
-const NUMBER_OF_POKEMON = 25;
-const NUMBER_OF_NATURES = 25;
+const NUMBER_OF_POKEMON = 5;
+const NUMBER_OF_NATURES = 5;
 
 @Injectable({
   providedIn: 'root'
@@ -50,12 +50,6 @@ export class PokemonService {
 		return of(naturesList);
 	}
 
-	// In the future we can change this to get the stats from the API,
-	// but sice the don't often change, we can set it in a static way
-/*	getStats(): Observable<Stat[]> {
-		return of(STATSLIST);
-	}*/
-
 	makePokemon(data): Pokemon {
 		let pokemon: Pokemon = {
 			id: data.id,
@@ -84,13 +78,13 @@ export class PokemonService {
 		if (increasedStat) {
 			// Get stat id from its URL
 			statId = parseInt( increasedStat.url.slice(-2, -1) );
-			STATSLIST[(statId - 1)].affectingNatures.increase.push(increasedStat.name);
+			this.statsList[(statId - 1)].affectingNatures.increase.push(data.name);
 		}
 
 		if (decreasedStat) {
 			// Get stat id from its URL
-			statId = parseInt( increasedStat.url.slice(-2, -1) );
-			STATSLIST[(statId - 1)].affectingNatures.decrease.push(decreasedStat.name);
+			statId = parseInt( decreasedStat.url.slice(-2, -1) );
+			this.statsList[(statId - 1)].affectingNatures.decrease.push(data.name);
 		}
 
 		return data.name;
