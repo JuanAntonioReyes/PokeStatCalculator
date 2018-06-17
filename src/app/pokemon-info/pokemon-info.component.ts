@@ -24,13 +24,13 @@ export class PokemonInfoComponent implements OnInit {
   	this.pokemonNature = 'adamant';
   }
 
-  ngOnInit() {
+	ngOnInit() {
 		this.getNatures();
-  }
+	}
 
-   getNatures(): void {
-    this.pokemonService.getNatures().subscribe(naturesList => this.naturesList = naturesList);
-  }
+	getNatures(): void {
+		this.pokemonService.getNatures().subscribe(naturesList => this.naturesList = naturesList);
+	}
 
 	checkStatIsHighest(statName): boolean {
 		let isHighest = true;
@@ -60,21 +60,19 @@ export class PokemonInfoComponent implements OnInit {
 		let stat: Stat = this.pokemonService.statsList[(statId - 1)];
 		let statValue: number;
 
-		// iv and ev not implemented yet, used neutral values
-		let iv = 0;
-		let ev = 0;
-
 		let natureMultiplier = 1;
-
 		if (stat.affectingNatures.increase.includes(this.pokemonNature)){
 			natureMultiplier = 1.1;
 		}
-
 		if (stat.affectingNatures.decrease.includes(this.pokemonNature)){
 			natureMultiplier = 0.9;
 		}
 
-		let doublePlusIvEv = ( (this.pokemon.baseStats[stat.shortName] * 2) + iv + ev );
+		// Check if the user input values (If they are not, change them to be correct)
+		//if (this.pokemonLevel < 1) this.pokemonLevel = 1;
+		//else if (this.pokemonLevel > 100) this.pokemonLevel = 100;
+
+		let doublePlusIvEv = ( (this.pokemon.baseStats[stat.shortName] * 2) + stat.iv + (stat.ev / 4) );
 		let commonValue = ( doublePlusIvEv * this.pokemonLevel / 100 );
 
 		if (stat.shortName === 'hp') {
@@ -84,6 +82,29 @@ export class PokemonInfoComponent implements OnInit {
 		}
 
 		return Math.floor(statValue);
+	}
+
+	validateDataInput(validationType: string, statId: number = -1): void {
+		if (validationType === 'level') {
+
+			if (this.pokemonLevel < 1) this.pokemonLevel = 1;
+			else if (this.pokemonLevel > 100) this.pokemonLevel = 100;
+
+		} else if (validationType === 'iv') {
+
+			let iv = this.pokemonService.statsList[(statId - 1)].iv;
+
+			if (iv < 0) this.pokemonService.statsList[(statId - 1)].iv = 0;
+			if (iv > 31) this.pokemonService.statsList[(statId - 1)].iv = 31;
+
+		} else if (validationType === 'ev' ) {
+			
+			let ev = this.pokemonService.statsList[(statId - 1)].ev;
+
+			if (ev < 0) this.pokemonService.statsList[(statId - 1)].ev = 0;
+			if (ev > 255) this.pokemonService.statsList[(statId - 1)].ev = 255;
+
+		}
 	}
 
 }

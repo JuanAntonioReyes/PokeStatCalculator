@@ -6,6 +6,8 @@ export let STATSLIST: Stat[] = [
 		id: 1,
 		shortName: 'hp',
 		name: 'HP',
+		iv: 31,
+		ev: 0,
 		affectingNatures: {
 			increase: [],
 			decrease: []
@@ -16,6 +18,8 @@ export let STATSLIST: Stat[] = [
 		id: 2,
 		shortName: 'attack',
 		name: 'Attack',
+		iv: 31,
+		ev: 0,
 		affectingNatures: {
 			increase: [],
 			decrease: []
@@ -26,6 +30,8 @@ export let STATSLIST: Stat[] = [
 		id: 3,
 		shortName: 'defense',
 		name: 'Defense',
+		iv: 31,
+		ev: 0,
 		affectingNatures: {
 			increase: [],
 			decrease: []
@@ -36,6 +42,8 @@ export let STATSLIST: Stat[] = [
 		id: 4,
 		shortName: 'spAttack',
 		name: 'Special Attack',
+		iv: 31,
+		ev: 0,
 		affectingNatures: {
 			increase: [],
 			decrease: []
@@ -46,6 +54,8 @@ export let STATSLIST: Stat[] = [
 		id: 5,
 		shortName: 'spDefense',
 		name: 'Special Defense',
+		iv: 31,
+		ev: 0,
 		affectingNatures: {
 			increase: [],
 			decrease: []
@@ -56,6 +66,8 @@ export let STATSLIST: Stat[] = [
 		id: 6,
 		shortName: 'speed',
 		name: 'Speed',
+		iv: 31,
+		ev: 0,
 		affectingNatures: {
 			increase: [],
 			decrease: []

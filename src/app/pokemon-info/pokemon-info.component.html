@@ -4,7 +4,7 @@
 	<img src="{{ pokemon.spriteUrl }}"><br>
 
 	<label>Level
-		<input [(ngModel)]="pokemonLevel" type="number" placeholder="level">
+		<input [(ngModel)]="pokemonLevel" required type="number" placeholder="level" (change)="validateDataInput('level')">
 	</label>
  	<label>Nature
 		<select [(ngModel)]="pokemonNature" name="nature">
@@ -17,6 +17,15 @@
 	<strong>STATS at level {{ pokemonLevel }} with {{ pokemonNature }} nature:</strong><br><br>
 
 	<div *ngFor="let stat of pokemonService.statsList">
+
+		<label>IV
+			<input [(ngModel)]="stat.iv" type="number" placeholder="{{stat.name}}IV" size="2" (change)="validateDataInput('iv', stat.id)">
+		</label>
+		&nbsp;
+		<label>EV
+			<input [(ngModel)]="stat.ev" type="number" placeholder="{{stat.name}}EV" size="2" (change)="validateDataInput('ev', stat.id)">
+		</label>
+		&nbsp;
 
 		{{ stat.name }} ({{ pokemon.baseStats[stat.shortName] }})
 		<span *ngIf="checkStatIsHighest(stat.shortName)"
