@@ -107,4 +107,10 @@ export class PokemonInfoComponent implements OnInit {
 		}
 	}
 
+	totalEvs(): number {
+		let totalEvs = 0;
+		this.pokemonService.statsList.forEach(stat => totalEvs += stat.ev);
+		return totalEvs;
+	}
+
 }

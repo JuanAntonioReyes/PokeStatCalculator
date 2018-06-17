@@ -14,16 +14,19 @@
 		</select>
 	</label><br><br>
 
-	<strong>STATS at level {{ pokemonLevel }} with {{ pokemonNature }} nature:</strong><br><br>
+	<strong>STATS at level {{ pokemonLevel }} with {{ pokemonNature }} nature:</strong><br>
+	(Total EV's: {{ totalEvs() }})<br><br>
 
 	<div *ngFor="let stat of pokemonService.statsList">
 
 		<label>IV
-			<input [(ngModel)]="stat.iv" type="number" placeholder="{{stat.name}}IV" size="2" (change)="validateDataInput('iv', stat.id)">
+			<input [(ngModel)]="stat.iv" type="number" placeholder="{{stat.name}}IV"
+				size="2" (change)="validateDataInput('iv', stat.id)">
 		</label>
 		&nbsp;
 		<label>EV
-			<input [(ngModel)]="stat.ev" type="number" placeholder="{{stat.name}}EV" size="2" (change)="validateDataInput('ev', stat.id)">
+			<input [(ngModel)]="stat.ev" type="number" placeholder="{{stat.name}}EV"
+				size="2" (change)="validateDataInput('ev', stat.id)">
 		</label>
 		&nbsp;
 
@@ -46,6 +49,10 @@
 
 	</div>
 	
+	<div *ngIf="totalEvs() > 510">
+		<strong style="color:red">THE MAXIMUM INGAME TOTAL EV IS 510</strong>
+	</div>
+
 </div>
 
 <ng-template #noSelectedPokemon>
