@@ -16,8 +16,12 @@ export class PokemonInfoComponent implements OnInit {
 
 	@Input() pokemon: Pokemon;
 
-  constructor(private pokemonService: PokemonService) {
+	pokemonLevel: number = null;
+	pokemonNature: string = null;
 
+  constructor(private pokemonService: PokemonService) {
+  	this.pokemonLevel = 100;
+  	this.pokemonNature = 'adamant';
   }
 
   ngOnInit() {
@@ -56,27 +60,25 @@ export class PokemonInfoComponent implements OnInit {
 		let stat: Stat = this.pokemonService.statsList[(statId - 1)];
 		let statValue: number;
 
-		// iv and ep not implemented yet, used neutral values
+		// iv and ev not implemented yet, used neutral values
 		let iv = 0;
-		let ep = 0;
+		let ev = 0;
 
 		let natureMultiplier = 1;
 
-		if (stat.affectingNatures.increase.includes(this.pokemon.nature)){
-			console.log(stat.name + " increased by " + this.pokemon.nature + " nature.");
+		if (stat.affectingNatures.increase.includes(this.pokemonNature)){
 			natureMultiplier = 1.1;
 		}
 
-		if (stat.affectingNatures.decrease.includes(this.pokemon.nature)){
-			console.log(stat.name + " decreased by " + this.pokemon.nature + " nature.");
+		if (stat.affectingNatures.decrease.includes(this.pokemonNature)){
 			natureMultiplier = 0.9;
 		}
 
-		let doublePlusIvEp = ( (this.pokemon.baseStats[stat.shortName] * 2) + iv + ep );
-		let commonValue = ( doublePlusIvEp * this.pokemon.level / 100 );
+		let doublePlusIvEv = ( (this.pokemon.baseStats[stat.shortName] * 2) + iv + ev );
+		let commonValue = ( doublePlusIvEv * this.pokemonLevel / 100 );
 
 		if (stat.shortName === 'hp') {
-			statValue = (commonValue + this.pokemon.level + 10);
+			statValue = (commonValue + this.pokemonLevel + 10);
 		} else {
 			statValue = ( (commonValue + 5) * natureMultiplier);
 		}

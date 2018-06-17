@@ -28,24 +28,24 @@ export class PokemonService {
   }
 
 	getPokemon(): Observable<Pokemon[]> {
-/*		let pokemonList: Pokemon[] = [];
+		let pokemonList: Pokemon[] = [];
 
 		for (let i = 1; i <= NUMBER_OF_POKEMON; i++) {
 			this.http.get(this.baseApiUrl + 'pokemon/' + i)
 			.subscribe( data => pokemonList.push(this.makePokemon(data)) );
 		}
 
-		return of(pokemonList);*/
-		return of(POKEMONLIST);
+		return of(pokemonList);
+		//return of(POKEMONLIST);
 	}
 
 	getNatures(): Observable<string[]> {
 		let naturesList: string[] = [];
 
-/*		for (let i = 1; i <= NUMBER_OF_NATURES; i++) {
+		for (let i = 1; i <= NUMBER_OF_NATURES; i++) {
 			this.http.get(this.baseApiUrl + 'nature/' + i)
 			.subscribe( data => naturesList.push(this.processNature(data)) );
-		}*/
+		}
 
 		return of(naturesList);
 	}
@@ -54,8 +54,6 @@ export class PokemonService {
 		let pokemon: Pokemon = {
 			id: data.id,
 			name: data.name,
-			level: 1,
-			nature: 'adamant',
 			spriteUrl: data.sprites.front_default,
 			baseStats: {
 				hp: data.stats[5].base_stat,
