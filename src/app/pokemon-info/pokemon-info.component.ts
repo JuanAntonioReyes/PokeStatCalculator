@@ -15,7 +15,8 @@ import { STATSLIST } from '../stats-list';
 export class PokemonInfoComponent implements OnInit {
 
 	stats: Stat[];
-	naturesList: any[] = [];
+	//naturesList: any[] = [];
+	naturesList: string[] = [];
 
 	@Input() pokemon: Pokemon;
 
@@ -24,7 +25,12 @@ export class PokemonInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-		this.pokemonService.setStatsAffectingNatures();
+		//this.pokemonService.setStatsAffectingNatures();
+		this.getNatures();
+  }
+
+   getNatures(): void {
+    this.pokemonService.getNatures().subscribe(naturesList => this.naturesList = naturesList);
   }
 
 	checkStatIsHighest(statName): boolean {

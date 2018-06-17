@@ -6,9 +6,9 @@
 	<label>Level
 		<input [(ngModel)]="pokemon.level" type="number" placeholder="level">
 	</label>
-	<label>Nature
+ 	<label>Nature
 		<select [(ngModel)]="pokemon.nature" name="nature">
-			<option *ngFor="let nature of pokemonService.naturesList | naturesSort" value="{{ nature }}">
+			<option *ngFor="let nature of naturesList | naturesSort" value="{{ nature }}">
 				{{ nature | uppercase }}
 			</option> 
 		</select>
@@ -17,6 +17,8 @@
 	<strong>STATS at level {{ pokemon.level }}:</strong><br><br>
 {{ naturesList }}
 	<div *ngFor="let stat of stats">
+		
+		{{ stat.name }}: ({{ pokemon.baseStats[stat.shortName] }})
 		<span *ngIf="checkStatIsHighest(stat.shortName)"
 			style="color:green;"
 			title="Highest Base Stat">
@@ -27,7 +29,8 @@
 			title="Lowest Base Stat">
 			✘
 		</span>
-		{{ stat.name }}: ({{ pokemon.baseStats[stat.shortName] }}) {{ calculateStat(stat.shortName) }}<br>
+
+		{{ calculateStat(stat.shortName) }}<br>
 	</div>
 	
 </div>

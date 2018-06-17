@@ -9,26 +9,29 @@ import { STATSLIST } from './stats-list';
 
 import { POKEMONLIST } from './mock-pokemon';
 
+const NUMBER_OF_POKEMON = 25;
+const NUMBER_OF_NATURES = 25;
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class PokemonService {
 
-	numberOfPokemon: number = null;
-	naturesList: string[] = null;
+	//numberOfPokemon: number = null;
+	//numberOfNatures: number = null;
+	//naturesList: string[] = null;
 
 	private baseApiUrl: string = 'https://pokeapi.co/api/v2/';
 
   constructor(private http: HttpClient) {
-  	this.numberOfPokemon = 50;
-  	this.naturesList = [];
+  	//this.naturesList = [];
   }
 
 	getPokemon(): Observable<Pokemon[]> {
 /*		let pokemonList: Pokemon[] = [];
 
-		for (let i = 1; i <= this.numberOfPokemon; i++) {
+		for (let i = 1; i <= NUMBER_OF_POKEMON; i++) {
 			this.http.get(this.baseApiUrl + 'pokemon/' + i)
 			.subscribe( data => pokemonList.push(this.makePokemon(data)) );
 		}
@@ -37,13 +40,24 @@ export class PokemonService {
 		return of(POKEMONLIST);
 	}
 
-	setStatsAffectingNatures(): void {
+	getNatures(): Observable<string[]> {
+		let naturesList: string[] = [];
+
+/*		for (let i = 1; i <= NUMBER_OF_NATURES; i++) {
+			this.http.get(this.baseApiUrl + 'nature/' + i)
+			.subscribe( data => naturesList.push(this.processNature(data)) );
+		}*/
+
+		return of(naturesList);
+	}
+
+/*	setStatsAffectingNatures(): void {
 		// The stat 1 (HP) isn't affected by any nature
 		for (let i = 2, l = STATSLIST.length; i <= l; i++) {
 			this.http.get(this.baseApiUrl + 'stat/' + i)
 			.subscribe( data => this.processStat(data) );
 		}
-	}
+	}*/
 
 	makePokemon(data): Pokemon {
 		let pokemon: Pokemon = {
@@ -65,7 +79,7 @@ export class PokemonService {
 		return pokemon;
 	}
 
-	processStat(data): void {
+/*	processStat(data): void {
 		data.affecting_natures.increase.forEach(inc => {
 			STATSLIST[(data.id - 1)].affectingNatures.increase.push(inc.name);
 			// TEMPORAL
@@ -76,5 +90,25 @@ export class PokemonService {
 		data.affecting_natures.decrease.forEach(dec => {
 			STATSLIST[(data.id - 1)].affectingNatures.decrease.push(dec.name);
 		});
+	}*/
+
+	processNature(data): string {
+		let increasedStat = data.increased_stat;
+		let decreasedStat = data.decreased_stat;
+		let statId;
+
+		if (increasedStat) {
+			// Get stat id from its URL
+			statId = parseInt( increasedStat.url.slice(-2, -1) );
+			STATSLIST[(statId - 1)].affectingNatures.increase.push(increasedStat.name);
+		}
+
+		if (decreasedStat) {
+			// Get stat id from its URL
+			statId = parseInt( increasedStat.url.slice(-2, -1) );
+			STATSLIST[(statId - 1)].affectingNatures.decrease.push(decreasedStat.name);
+		}
+
+		return data.name;
 	}
 }
