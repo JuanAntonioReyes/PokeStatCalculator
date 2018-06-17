@@ -2,9 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
 
 import { Pokemon } from '../pokemon';
-import { Stat } from '../stat';
+//import { Stat } from '../stat';
 
-import { STATSLIST } from '../stats-list';
+//import { STATSLIST } from '../stats-list';
 
 @Component({
   selector: 'app-pokemon-info',
@@ -14,14 +14,13 @@ import { STATSLIST } from '../stats-list';
 
 export class PokemonInfoComponent implements OnInit {
 
-	stats: Stat[];
-	//naturesList: any[] = [];
+	//stats: Stat[];
 	naturesList: string[] = [];
 
 	@Input() pokemon: Pokemon;
 
   constructor(private pokemonService: PokemonService) {
-  	this.stats = STATSLIST;
+  	//this.stats = STATSLIST;
   }
 
   ngOnInit() {
@@ -36,7 +35,8 @@ export class PokemonInfoComponent implements OnInit {
 	checkStatIsHighest(statName): boolean {
 		let isHighest = true;
 
-		this.stats.forEach(stat => {
+		//this.stats.forEach(stat => {
+		this.pokemonService.statsList.forEach(stat => {
 			if (this.pokemon.baseStats[statName] > this.pokemon.baseStats[stat.shortName]) {
 				isHighest = false;
 			}
@@ -48,7 +48,8 @@ export class PokemonInfoComponent implements OnInit {
 	checkStatIsLowest(statName): boolean {
 		let isLowest = true;
 
-		this.stats.forEach(stat => {
+		//this.stats.forEach(stat => {
+		this.pokemonService.statsList.forEach(stat => {
 			if (this.pokemon.baseStats[statName] < this.pokemon.baseStats[stat.shortName]) {
 				isLowest = false;
 			}

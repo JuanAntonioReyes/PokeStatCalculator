@@ -13,7 +13,7 @@
 			<th (click)="changeListSorting('name')">
 				Name <span *ngIf="sortListBy==='name'; then showOrder"></span>
 			</th>
-			<th *ngFor="let stat of stats" (click)="changeListSorting(stat[0])">
+			<th *ngFor="let stat of pokemonService.statsList" (click)="changeListSorting(stat[0])">
 				{{ stat.name }} <span *ngIf="sortListBy===stat.shortName; then showOrder"></span>
 			</th>
 		</tr>
@@ -21,7 +21,7 @@
  		<tr *ngFor="let pokemon of pokemonList | order:sortListBy:reverseList:pokemonList.length" (click)="selectPokemon(pokemon)">
 			<td>#{{ pokemon.id }}</td>
 			<td>{{ pokemon.name | uppercase }}</td>
-			<td *ngFor="let stat of stats">{{ pokemon.baseStats[stat.shortName] }}</td>
+			<td *ngFor="let stat of pokemonService.statsList">{{ pokemon.baseStats[stat.shortName] }}</td>
 		</tr>
 	</table>
 </div>

@@ -16,9 +16,9 @@
 
 	<strong>STATS at level {{ pokemon.level }}:</strong><br><br>
 {{ naturesList }}
-	<div *ngFor="let stat of stats">
-		
-		{{ stat.name }}: ({{ pokemon.baseStats[stat.shortName] }})
+	<div *ngFor="let stat of pokemonService.statsList">
+
+		{{ stat.name }} ({{ pokemon.baseStats[stat.shortName] }})
 		<span *ngIf="checkStatIsHighest(stat.shortName)"
 			style="color:green;"
 			title="Highest Base Stat">
@@ -29,8 +29,11 @@
 			title="Lowest Base Stat">
 			✘
 		</span>
+		:
 
-		{{ calculateStat(stat.shortName) }}<br>
+		<strong>
+			{{ calculateStat(stat.shortName) }}<br>
+		</strong>
 	</div>
 	
 </div>

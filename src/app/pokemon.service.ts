@@ -7,6 +7,7 @@ import { Stat } from './stat';
 
 import { STATSLIST } from './stats-list';
 
+// Mock pokemon list
 import { POKEMONLIST } from './mock-pokemon';
 
 const NUMBER_OF_POKEMON = 25;
@@ -18,14 +19,12 @@ const NUMBER_OF_NATURES = 25;
 
 export class PokemonService {
 
-	//numberOfPokemon: number = null;
-	//numberOfNatures: number = null;
-	//naturesList: string[] = null;
-
 	private baseApiUrl: string = 'https://pokeapi.co/api/v2/';
 
+	statsList: Stat[] = [];
+
   constructor(private http: HttpClient) {
-  	//this.naturesList = [];
+  	this.statsList = STATSLIST;
   }
 
 	getPokemon(): Observable<Pokemon[]> {
@@ -51,12 +50,10 @@ export class PokemonService {
 		return of(naturesList);
 	}
 
-/*	setStatsAffectingNatures(): void {
-		// The stat 1 (HP) isn't affected by any nature
-		for (let i = 2, l = STATSLIST.length; i <= l; i++) {
-			this.http.get(this.baseApiUrl + 'stat/' + i)
-			.subscribe( data => this.processStat(data) );
-		}
+	// In the future we can change this to get the stats from the API,
+	// but sice the don't often change, we can set it in a static way
+/*	getStats(): Observable<Stat[]> {
+		return of(STATSLIST);
 	}*/
 
 	makePokemon(data): Pokemon {
@@ -78,19 +75,6 @@ export class PokemonService {
 
 		return pokemon;
 	}
-
-/*	processStat(data): void {
-		data.affecting_natures.increase.forEach(inc => {
-			STATSLIST[(data.id - 1)].affectingNatures.increase.push(inc.name);
-			// TEMPORAL
-			// - TODO - Load the natures from the API (There's some natures that don't have any effect)
-			this.naturesList.push(inc.name);
-		});
-
-		data.affecting_natures.decrease.forEach(dec => {
-			STATSLIST[(data.id - 1)].affectingNatures.decrease.push(dec.name);
-		});
-	}*/
 
 	processNature(data): string {
 		let increasedStat = data.increased_stat;
