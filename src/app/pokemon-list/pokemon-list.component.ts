@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
 
 import { Pokemon } from '../pokemon';
@@ -15,9 +15,6 @@ export class PokemonListComponent implements OnInit {
   sortListBy: string = 'id';
   reverseList: number = -1;
 
-	@Output()
-  selectedPokemon: EventEmitter<Pokemon> = new EventEmitter<Pokemon>();
-
   constructor(private pokemonService: PokemonService) {
 
   }
@@ -27,7 +24,7 @@ export class PokemonListComponent implements OnInit {
   }
 
   selectPokemon(pokemon: Pokemon): void {
-    this.selectedPokemon.emit(pokemon);
+    this.pokemonService.selectedPokemon = pokemon;
   }
 
   getPokemon(): void {

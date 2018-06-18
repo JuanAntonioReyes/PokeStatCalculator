@@ -1,7 +1,10 @@
-<div *ngIf="pokemon; else noSelectedPokemon">
-	<h2>(#{{ pokemon.id }}) {{ pokemon.name | uppercase }}</h2>
+<div *ngIf="pokemonService.selectedPokemon; else noSelectedPokemon">
+	<h2>
+		(#{{ pokemonService.selectedPokemon.id }})
+		{{ pokemonService.selectedPokemon.name | uppercase }}
+	</h2>
 
-	<img src="{{ pokemon.spriteUrl }}"><br>
+	<img src="{{ pokemonService.selectedPokemon.spriteUrl }}"><br>
 
 	<label>Level
 		<input [(ngModel)]="pokemonLevel" type="number" placeholder="level" (change)="validateDataInput('level')">
@@ -43,7 +46,7 @@
 			&#10134; <!-- Unicode minus sign -->
 		</span>
 
-		({{ pokemon.baseStats[stat.shortName] }})
+		({{ pokemonService.selectedPokemon.baseStats[stat.shortName] }})
 
 		<span *ngIf="checkStatHighLow(stat.shortName) === 1"
 			style="color:green;"

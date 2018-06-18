@@ -21,6 +21,8 @@ export class PokemonService {
 
 	private baseApiUrl: string = 'https://pokeapi.co/api/v2/';
 
+	selectedPokemon: Pokemon = null;
+
 	statsList: Stat[] = [];
 
   constructor(private http: HttpClient) {
