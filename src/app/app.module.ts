@@ -8,6 +8,7 @@ import { PokemonInfoComponent } from './pokemon-info/pokemon-info.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { OrderPipe } from './order.pipe';
 import { NaturesSortPipe } from './natures-sort.pipe';
+import { FilterPokemonPipe } from './filter-pokemon.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NaturesSortPipe } from './natures-sort.pipe';
     PokemonInfoComponent,
     PokemonListComponent,
     OrderPipe,
-    NaturesSortPipe
+    NaturesSortPipe,
+    FilterPokemonPipe
   ],
   imports: [
     BrowserModule,

@@ -7,11 +7,11 @@
 	<img src="{{ pokemonService.selectedPokemon.spriteUrl }}"><br>
 
 	<label>Level
-		<input [(ngModel)]="pokemonLevel" type="number" placeholder="level" (change)="validateDataInput('level')">
+		<input [(ngModel)]="pokemonLevel" type="number" placeholder="Level" (change)="validateDataInput('level')">
 	</label>
  	<label>Nature
 		<select [(ngModel)]="pokemonNature" name="nature">
-			<option *ngFor="let nature of naturesList | naturesSort" value="{{ nature }}">
+			<option *ngFor="let nature of naturesList | naturesSort:naturesList.length" value="{{ nature }}">
 				{{ nature | uppercase }}
 			</option> 
 		</select>

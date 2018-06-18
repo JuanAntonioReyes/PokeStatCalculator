@@ -3,7 +3,13 @@
 	{{ pokemonList.length }} / {{ pokemonService.numberOfPokemon }}</h3>
 </div>
 <div>
-	<h2>Available Pokemon:</h2>
+	<h2>
+		Available Pokemon:
+	</h2>
+
+	<label>Filter by name:
+		<input [(ngModel)]="nameFilter" placeholder="Name filter">
+	</label><br><br>
 
 	<table border="1">
 		<tr>
@@ -18,7 +24,7 @@
 			</th>
 		</tr>
 
- 		<tr *ngFor="let pokemon of pokemonList | order:sortListBy:reverseList:pokemonList.length" (click)="selectPokemon(pokemon)">
+ 		<tr *ngFor="let pokemon of pokemonList | filterPokemon:nameFilter | order:sortListBy:reverseList:pokemonList.length" (click)="selectPokemon(pokemon)">
 			<td>#{{ pokemon.id }}</td>
 			<td>{{ pokemon.name | uppercase }}</td>
 			<td *ngFor="let stat of pokemonService.statsList">{{ pokemon.baseStats[stat.shortName] }}</td>

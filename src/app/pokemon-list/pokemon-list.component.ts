@@ -12,11 +12,16 @@ export class PokemonListComponent implements OnInit {
 
 	pokemonList: Pokemon[] = [];
 
-  sortListBy: string = 'id';
-  reverseList: number = -1;
+  nameFilter: string = null;
+
+  sortListBy: string = null;
+  reverseList: number = null;
 
   constructor(private pokemonService: PokemonService) {
+    this.nameFilter = '';
 
+    this.sortListBy = 'id';
+    this.reverseList = -1;
   }
 
   ngOnInit() {

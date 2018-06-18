@@ -11,10 +11,12 @@ let reverseSort = -1;
 
 export class OrderPipe implements PipeTransform {
 
-	// UGLY PATCH - TRY TO FIND A BETTER SOLUTION
+	// UGLY PATCH? - TRY TO FIND A BETTER SOLUTION?
 	// The "elements" parameter is passed to force the pipe to be called when
 	// we add pokemon to the list with push (The pure pipe needs a pure change
 	// to be called, like the "elements" value that changes with the list length)
+	// So the pokemon will be sorted even if we see them wile they are being
+	// pushed into the list
 	transform(value: Pokemon[], sortListBy: string, reverseList: number, elements: number): Pokemon[] {
 		sortByValue = sortListBy;
 		// 1 for min to max sorting, -1 for reverse (max to min)
