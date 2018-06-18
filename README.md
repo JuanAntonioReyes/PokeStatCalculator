@@ -14,6 +14,7 @@ npm install
 ```
 
 (For the sake of speed when loading, the app only load the info of the first gen pokemon, 151, from the pokeAPI. If you want to load more data, you only need to change the "numberOfPokemon" variable from "pokemon.service.ts" from 151 to the desired number of pokemon)
+(Sometimes it may not display some of the pokemon, but it is due the pokeAPI limitations in number of calls to it)
 
 ## Usage
 - Launch the project
