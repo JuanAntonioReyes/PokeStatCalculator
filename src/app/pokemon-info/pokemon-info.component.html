@@ -4,7 +4,7 @@
 	<img src="{{ pokemon.spriteUrl }}"><br>
 
 	<label>Level
-		<input [(ngModel)]="pokemonLevel" required type="number" placeholder="level" (change)="validateDataInput('level')">
+		<input [(ngModel)]="pokemonLevel" type="number" placeholder="level" (change)="validateDataInput('level')">
 	</label>
  	<label>Nature
 		<select [(ngModel)]="pokemonNature" name="nature">
@@ -21,12 +21,12 @@
 
 		<label>IV
 			<input [(ngModel)]="stat.iv" type="number" placeholder="{{stat.name}}IV"
-				size="2" (change)="validateDataInput('iv', stat.id)">
+				(change)="validateDataInput('iv', stat)">
 		</label>
 		&nbsp;
 		<label>EV
 			<input [(ngModel)]="stat.ev" type="number" placeholder="{{stat.name}}EV"
-				size="2" (change)="validateDataInput('ev', stat.id)">
+				(change)="validateDataInput('ev', stat)">
 		</label>
 		&nbsp;
 
@@ -50,7 +50,7 @@
 	</div>
 	
 	<div *ngIf="totalEvs() > 510">
-		<strong style="color:red">THE MAXIMUM INGAME TOTAL EV IS 510</strong>
+		<strong style="color:red">THE MAXIMUM INGAME TOTAL EV IS 510 (YOU HAVE: {{ totalEvs() }})</strong>
 	</div>
 
 </div>

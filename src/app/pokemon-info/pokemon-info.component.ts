@@ -68,10 +68,6 @@ export class PokemonInfoComponent implements OnInit {
 			natureMultiplier = 0.9;
 		}
 
-		// Check if the user input values (If they are not, change them to be correct)
-		//if (this.pokemonLevel < 1) this.pokemonLevel = 1;
-		//else if (this.pokemonLevel > 100) this.pokemonLevel = 100;
-
 		let doublePlusIvEv = ( (this.pokemon.baseStats[stat.shortName] * 2) + stat.iv + (stat.ev / 4) );
 		let commonValue = ( doublePlusIvEv * this.pokemonLevel / 100 );
 
@@ -84,25 +80,27 @@ export class PokemonInfoComponent implements OnInit {
 		return Math.floor(statValue);
 	}
 
-	validateDataInput(validationType: string, statId: number = -1): void {
+	validateDataInput(validationType: string, stat: Stat = null): void {
 		if (validationType === 'level') {
 
 			if (this.pokemonLevel < 1) this.pokemonLevel = 1;
-			else if (this.pokemonLevel > 100) this.pokemonLevel = 100;
+			else if ( this.pokemonLevel > 100 ||
+								isNaN(this.pokemonLevel) ||
+								(this.pokemonLevel === null) ) this.pokemonLevel = 100;
 
 		} else if (validationType === 'iv') {
 
-			let iv = this.pokemonService.statsList[(statId - 1)].iv;
-
-			if (iv < 0) this.pokemonService.statsList[(statId - 1)].iv = 0;
-			if (iv > 31) this.pokemonService.statsList[(statId - 1)].iv = 31;
+			if (stat.iv < 0) stat.iv = 0;
+			else if ( (stat.iv > 31) ||
+								isNaN(stat.iv) ||
+								(stat.iv === null) ) stat.iv = 31;
 
 		} else if (validationType === 'ev' ) {
 			
-			let ev = this.pokemonService.statsList[(statId - 1)].ev;
-
-			if (ev < 0) this.pokemonService.statsList[(statId - 1)].ev = 0;
-			if (ev > 255) this.pokemonService.statsList[(statId - 1)].ev = 255;
+			if ( (stat.ev < 0) ||
+						isNaN(stat.ev) ||
+						(stat.ev === null) ) stat.ev = 0;
+			else if (stat.ev > 255) stat.ev = 255;
 
 		}
 	}
