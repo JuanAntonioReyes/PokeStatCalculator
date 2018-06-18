@@ -18,15 +18,15 @@ export class PokemonService {
 
 	private baseApiUrl: string = 'https://pokeapi.co/api/v2/';
 
-	numberOfPokemon = 25;
-	numberOfNatures = 25;
+	numberOfPokemon: number = 25;
+	numberOfNatures: number = 25;
 
 	selectedPokemon: Pokemon = null;
 
-	statsList: Stat[] = [];
+	statsList: Stat[] = null;
 
   constructor(private http: HttpClient) {
-  	this.statsList = STATSLIST;
+		this.statsList = STATSLIST;
   }
 
 	getPokemon(): Observable<Pokemon[]> {

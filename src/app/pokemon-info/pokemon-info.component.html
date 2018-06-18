@@ -61,13 +61,18 @@
 		:
 
 		<strong>
-			{{ calculateStat(stat.id) }}<br>
+			{{ calculateStat(stat) }}<br>
 		</strong>
 
 	</div>
-	
+
+	<br>
+	This pokemon hidden power will be
+	<strong>{{ hiddenPowerType() | lowercase }}</strong> type, with a damage of
+	<strong>{{ hiddenPowerDamage() }}</strong><br><br>
+
 	<div *ngIf="totalEvs() > 510">
-		<strong style="color:red">THE MAXIMUM INGAME TOTAL EV IS 510 (YOU HAVE: {{ totalEvs() }})</strong>
+		<strong style="color:red">THE MAXIMUM INGAME TOTAL EV's ARE 510 (YOU HAVE: {{ totalEvs() }})</strong>
 	</div>
 
 </div>

@@ -30,7 +30,9 @@ export class PokemonInfoComponent implements OnInit {
 		this.pokemonService.getNatures().subscribe(naturesList => this.naturesList = naturesList);
 	}
 
-	checkStatHighLow(statName): number {
+	// Returns 1 if the stat is the highest (Or one of the highests), -1 if the
+	// stat is the lowest and 0 if the stat is neither the highest or the lowest
+	checkStatHighLow(statName: string): number {
 		let pokemon: Pokemon = this.pokemonService.selectedPokemon;
 
 		let isHighest: boolean = true;
@@ -50,6 +52,8 @@ export class PokemonInfoComponent implements OnInit {
 		return 0;
 	}
 
+	// Returns 1 if the stat is increased by the selected nature, -1 if it is
+	// decreased and 0 if it is neither increased or decreased
 	checkAffectingNature(stat: Stat): number {
 		let isFavorable: boolean = false;
 		let isUnfavorable: boolean = false;
@@ -62,11 +66,10 @@ export class PokemonInfoComponent implements OnInit {
 		return 0;
 	}
 
-	calculateStat(statId): number {
+	calculateStat(stat: Stat): number {
 		let pokemon: Pokemon = this.pokemonService.selectedPokemon;
 
-		let stat: Stat = this.pokemonService.statsList[(statId - 1)];
-		let statValue: number;
+		let statFinalValue: number;
 
 		let natureMultiplier = 1;
 		if (stat.affectingNatures.increase.includes(this.pokemonNature)){
@@ -80,12 +83,12 @@ export class PokemonInfoComponent implements OnInit {
 		let commonValue = ( doublePlusIvEv * this.pokemonLevel / 100 );
 
 		if (stat.shortName === 'hp') {
-			statValue = (commonValue + this.pokemonLevel + 10);
+			statFinalValue = (commonValue + this.pokemonLevel + 10);
 		} else {
-			statValue = ( (commonValue + 5) * natureMultiplier);
+			statFinalValue = ( (commonValue + 5) * natureMultiplier);
 		}
 
-		return Math.floor(statValue);
+		return Math.floor(statFinalValue);
 	}
 
 	validateDataInput(validationType: string, stat: Stat = null): void {
@@ -117,6 +120,63 @@ export class PokemonInfoComponent implements OnInit {
 		let totalEvs = 0;
 		this.pokemonService.statsList.forEach(stat => totalEvs += stat.ev);
 		return totalEvs;
+	}
+
+	hiddenPowerType(): string {
+		let hiddenPowerTypesList: string[] = ['Fighting', 'Flying', 'Poison',
+																					'Ground', 'Rock', 'Bug', 'Ghost',
+																					'Steel', 'Fire', 'Water', 'Grass',
+																					'Electric', 'Psychic', 'Ice',
+																					'Dragon', 'Dark']
+
+		// If the IV of the corresponding stat are odd, the value will be 1,
+		// otherwise, it will be 0
+		// HP IV
+		let a: number = (this.pokemonService.statsList[0].iv % 2) ? 1 : 0;
+		// Attack IV
+		let b: number = (this.pokemonService.statsList[1].iv % 2) ? 1 : 0;
+		// Defense IV
+		let c: number = (this.pokemonService.statsList[2].iv % 2) ? 1 : 0;
+		// Speed IV
+		let d: number = (this.pokemonService.statsList[5].iv % 2) ? 1 : 0;
+		// Special Attack IV
+		let e: number = (this.pokemonService.statsList[3].iv % 2) ? 1 : 0;
+		// Special Defense IV
+		let f: number = (this.pokemonService.statsList[4].iv % 2) ? 1 : 0;
+
+		let valuesSum: number = (a + 2*b + 4*c + 8*d + 16*e + 32*f);
+		let hPTypeIndex: number = Math.floor((valuesSum * 15) / 63)
+
+		return hiddenPowerTypesList[hPTypeIndex];
+	}
+
+	hiddenPowerDamage(): number {
+		let remainder: number;
+		// If the IV of the corresponding stat divided by 4 have a remainder of
+		// 2 or 3, the value will be 1, otherwise, it will be 0
+		// HP IV
+		remainder = (this.pokemonService.statsList[0].iv % 4);
+		let u: number = ( (remainder === 2) || (remainder === 3) ) ? 1 : 0;
+		// Attack IV
+		remainder = (this.pokemonService.statsList[1].iv % 4);
+		let v: number = ( (remainder === 2) || (remainder === 3) ) ? 1 : 0;
+		// Defense IV
+		remainder = (this.pokemonService.statsList[2].iv % 4);
+		let w: number = ( (remainder === 2) || (remainder === 3) ) ? 1 : 0;
+		// Speed IV
+		remainder = (this.pokemonService.statsList[5].iv % 4);
+		let x: number = ( (remainder === 2) || (remainder === 3) ) ? 1 : 0;
+		// Special Attack IV
+		remainder = (this.pokemonService.statsList[3].iv % 4);
+		let y: number = ( (remainder === 2) || (remainder === 3) ) ? 1 : 0;
+		// Special Defense IV
+		remainder = (this.pokemonService.statsList[4].iv % 4);
+		let z: number = ( (remainder === 2) || (remainder === 3) ) ? 1 : 0;
+
+		let valuesSum: number = (u + 2*v + 4*w + 8*x + 16*y + 32*z);
+		let hPDamageIndex: number = Math.floor( ((valuesSum * 40) / 63) + 30 );
+
+		return hPDamageIndex;
 	}
 
 }

@@ -29,6 +29,7 @@ export class PokemonListComponent implements OnInit {
   minSpeed: number = null;
   maxSpeed: number = null;
 
+  // Pokemon list sorting
   sortListBy: string = null;
   reverseList: number = null;
 
