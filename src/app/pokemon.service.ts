@@ -10,8 +10,8 @@ import { STATSLIST } from './stats-list';
 // Mock pokemon list
 import { POKEMONLIST } from './mock-pokemon';
 
-const NUMBER_OF_POKEMON = 5;
-const NUMBER_OF_NATURES = 5;
+const NUMBER_OF_POKEMON = 25;
+const NUMBER_OF_NATURES = 25;
 
 @Injectable({
   providedIn: 'root'

@@ -31,12 +31,12 @@
 		&nbsp;
 
 		{{ stat.name }} ({{ pokemon.baseStats[stat.shortName] }})
-		<span *ngIf="checkStatIsHighest(stat.shortName)"
+		<span *ngIf="checkStatHighLow(stat.shortName) === 1"
 			style="color:green;"
 			title="Highest Base Stat">
 			✔
 		</span>
-		<span *ngIf="checkStatIsLowest(stat.shortName)"
+		<span *ngIf="checkStatHighLow(stat.shortName) === -1"
 			style="color:red;"
 			title="Lowest Base Stat">
 			✘

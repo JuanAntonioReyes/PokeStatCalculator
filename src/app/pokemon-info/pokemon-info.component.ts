@@ -32,28 +32,58 @@ export class PokemonInfoComponent implements OnInit {
 		this.pokemonService.getNatures().subscribe(naturesList => this.naturesList = naturesList);
 	}
 
-	checkStatIsHighest(statName): boolean {
+/*	checkStatIsHighest(statName): number {
 		let isHighest = true;
+		let isLowest = true;
 
 		this.pokemonService.statsList.forEach(stat => {
 			if (this.pokemon.baseStats[statName] > this.pokemon.baseStats[stat.shortName]) {
 				isHighest = false;
 			}
-		});
-
-		return isHighest;
-	}
-
-	checkStatIsLowest(statName): boolean {
-		let isLowest = true;
-
-		this.pokemonService.statsList.forEach(stat => {
 			if (this.pokemon.baseStats[statName] < this.pokemon.baseStats[stat.shortName]) {
 				isLowest = false;
 			}
 		});
 
-		return isLowest;
+		if (isHighest) return 1;
+		if (isLowest) return -1;
+		return 0;
+	}
+
+	checkStatIsLowest(statName): number {
+		let isHighest = true;
+		let isLowest = true;
+
+		this.pokemonService.statsList.forEach(stat => {
+			if (this.pokemon.baseStats[statName] > this.pokemon.baseStats[stat.shortName]) {
+				isHighest = false;
+			}
+			if (this.pokemon.baseStats[statName] < this.pokemon.baseStats[stat.shortName]) {
+				isLowest = false;
+			}
+		});
+
+		if (isHighest) return 1;
+		if (isLowest) return -1;
+		return 0;
+	}*/
+
+	checkStatHighLow(statName): number {
+		let isHighest = true;
+		let isLowest = true;
+		
+		this.pokemonService.statsList.forEach(stat => {
+			if ( this.pokemon.baseStats[stat.shortName] > this.pokemon.baseStats[statName] ) {
+				isHighest = false;
+			}
+			if ( this.pokemon.baseStats[stat.shortName] < this.pokemon.baseStats[statName] ) {
+				isLowest = false;
+			}
+		});
+		
+		if (isHighest) return 1;
+		if (isLowest) return -1;
+		return 0;
 	}
 
 	calculateStat(statId): number {
