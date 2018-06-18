@@ -13,6 +13,8 @@ Angular app that calculates pokemon stats (For testing purposes)
 npm install
 ```
 
+(For the sake of speed when loading, the app only load the info of the first gen pokemon, 151, from the pokeAPI. If you want to load more data, you only need to change the "numberOfPokemon" variable from "pokemon.service.ts" from 151 to the desired number of pokemon)
+
 ## Usage
 - Launch the project
 
@@ -24,7 +26,11 @@ ng serve
 
 - Wait until all the pokemon data is loaded
 
-- Click on a Pokemon to display its data (You can sort the Pokemon list by clicking in the table titles)
+- Click on a Pokemon to display its data (You can sort the Pokemon list by clicking in the table titles and filter by part of the name and max/min stat values)
 
 - Enter a level and the app will calculate the stats of the Pokemon on that level based on the base stats
 (The highest and lowest base stats will be marked)
+
+- You can set the pokemon IV's and EV's and nature (The stats affected by the selected nature will be marked)
+
+- The app will also tell you the pokemon hidden power type and it damage points

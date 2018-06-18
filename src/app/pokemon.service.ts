@@ -18,7 +18,10 @@ export class PokemonService {
 
 	private baseApiUrl: string = 'https://pokeapi.co/api/v2/';
 
-	numberOfPokemon: number = 25;
+	// The number of pokemon is limited to the first gen (151)
+	// If you want to load more pokemon, change the value from 151
+	// to a maximum of 802
+	numberOfPokemon: number = 151;
 	numberOfNatures: number = 25;
 
 	selectedPokemon: Pokemon = null;
@@ -30,24 +33,26 @@ export class PokemonService {
   }
 
 	getPokemon(): Observable<Pokemon[]> {
-/*		let pokemonList: Pokemon[] = [];
+		// Mock pokemon list for testing without using the API
+		//return of(POKEMONLIST);
+
+		let pokemonList: Pokemon[] = [];
 
 		for (let i = 1; i <= this.numberOfPokemon; i++) {
 			this.http.get(this.baseApiUrl + 'pokemon/' + i)
 			.subscribe( data => pokemonList.push(this.makePokemon(data)) );
 		}
 
-		return of(pokemonList);*/
-		return of(POKEMONLIST);
+		return of(pokemonList);
 	}
 
 	getNatures(): Observable<string[]> {
 		let naturesList: string[] = [];
 
-/*		for (let i = 1; i <= this.numberOfNatures; i++) {
+		for (let i = 1; i <= this.numberOfNatures; i++) {
 			this.http.get(this.baseApiUrl + 'nature/' + i)
 			.subscribe( data => naturesList.push(this.processNature(data)) );
-		}*/
+		}
 
 		return of(naturesList);
 	}
