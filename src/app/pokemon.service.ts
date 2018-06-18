@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { Pokemon } from './pokemon';
-import { Stat } from './stat';
+import { Pokemon } from './classes/pokemon';
+import { Stat } from './classes/stat';
 
-import { STATSLIST } from './stats-list';
+import { STATSLIST } from './classes/stats-list';
 
 // Mock pokemon list
-import { POKEMONLIST } from './mock-pokemon';
+import { POKEMONLIST } from './classes/mock-pokemon';
 
 @Injectable({
   providedIn: 'root'

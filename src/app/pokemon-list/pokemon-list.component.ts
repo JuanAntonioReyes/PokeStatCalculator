@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../pokemon.service';
 
-import { Pokemon } from '../pokemon';
+import { Pokemon } from '../classes/pokemon';
 
 @Component({
   selector: 'app-pokemon-list',
