@@ -6,9 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { PokemonInfoComponent } from './pokemon-info/pokemon-info.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
-import { OrderPipe } from './order.pipe';
-import { NaturesSortPipe } from './natures-sort.pipe';
-import { FilterPokemonPipe } from './filter-pokemon.pipe';
+import { OrderPipe } from './pipes/order.pipe';
+import { NaturesSortPipe } from './pipes/natures-sort.pipe';
+import { FilterPokemonPipe } from './pipes/filter-pokemon.pipe';
 
 @NgModule({
   declarations: [
