@@ -7,9 +7,34 @@
 		Available Pokemon:
 	</h2>
 
+	<button (click)="clearFilters()">Clear all filters</button><br>
 	<label>Filter by name:
 		<input [(ngModel)]="nameFilter" placeholder="Name filter">
-	</label><br><br>
+	</label><br>
+	<label>Filter by HP:
+		<input [(ngModel)]="minHp" type="number" placeholder="Min. HP"> 
+		<input [(ngModel)]="maxHp" type="number" placeholder="Max. HP">
+	</label><br>
+	<label>Filter by Attack:
+		<input [(ngModel)]="minAttack" type="number" placeholder="Min. Attack"> 
+		<input [(ngModel)]="maxAttack" type="number" placeholder="Max. Attack">
+	</label><br>
+	<label>Filter by Defense:
+		<input [(ngModel)]="minDefense" type="number" placeholder="Min. Defense"> 
+		<input [(ngModel)]="maxDefense" type="number" placeholder="Max. Defense">
+	</label><br>
+	<label>Filter by Special Attack:
+		<input [(ngModel)]="minSpAttack" type="number" placeholder="Min. Sp. Attack"> 
+		<input [(ngModel)]="maxSpAttack" type="number" placeholder="Max. Sp. Attack">
+	</label><br>
+	<label>Filter by Special Defense:
+		<input [(ngModel)]="minSpDefense" type="number" placeholder="Min. Sp. Defense"> 
+		<input [(ngModel)]="maxSpDefense" type="number" placeholder="Max. Sp. Defense">
+	</label><br>
+	<label>Filter by Speed:
+		<input [(ngModel)]="minSpeed" type="number" placeholder="Min. Speed"> 
+		<input [(ngModel)]="maxSpeed" type="number" placeholder="Max. Speed">
+	</label><br>
 
 	<table border="1">
 		<tr>
@@ -24,10 +49,15 @@
 			</th>
 		</tr>
 
- 		<tr *ngFor="let pokemon of pokemonList | filterPokemon:nameFilter | order:sortListBy:reverseList:pokemonList.length" (click)="selectPokemon(pokemon)">
-			<td>#{{ pokemon.id }}</td>
-			<td>{{ pokemon.name | uppercase }}</td>
-			<td *ngFor="let stat of pokemonService.statsList">{{ pokemon.baseStats[stat.shortName] }}</td>
+ 		<tr *ngFor="let pokemon of pokemonList
+ 			| filterPokemon:nameFilter:minHp:maxHp:minAttack:maxAttack:minDefense
+ 				:maxDefense:minSpAttack:maxSpAttack:minSpDefense:maxSpDefense
+ 				:minSpeed:maxSpeed:pokemonList.length
+ 			| order:sortListBy:reverseList:pokemonList.length"
+ 			(click)="selectPokemon(pokemon)">
+				<td>#{{ pokemon.id }}</td>
+				<td>{{ pokemon.name | uppercase }}</td>
+				<td *ngFor="let stat of pokemonService.statsList">{{ pokemon.baseStats[stat.shortName] }}</td>
 		</tr>
 	</table>
 </div>
