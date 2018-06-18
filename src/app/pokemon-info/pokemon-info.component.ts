@@ -86,6 +86,18 @@ export class PokemonInfoComponent implements OnInit {
 		return 0;
 	}
 
+	checkAffectingNature(stat: Stat): number {
+		let isFavorable = false;
+		let isUnfavorable = false;
+		
+		if(stat.affectingNatures.increase.includes(this.pokemonNature)) isFavorable = true;
+		if(stat.affectingNatures.decrease.includes(this.pokemonNature)) isUnfavorable = true;
+		
+		if (isFavorable) return 1;
+		if (isUnfavorable) return -1;
+		return 0;
+	}
+
 	calculateStat(statId): number {
 		let stat: Stat = this.pokemonService.statsList[(statId - 1)];
 		let statValue: number;

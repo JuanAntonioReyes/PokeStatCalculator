@@ -30,16 +30,30 @@
 		</label>
 		&nbsp;
 
-		{{ stat.name }} ({{ pokemon.baseStats[stat.shortName] }})
+		{{ stat.name }}
+
+		<span *ngIf="checkAffectingNature(stat) === 1"
+			style="color:green;"
+			title="Favorable nature">
+			&#10133; <!-- Unicode plus sign -->
+		</span>
+		<span *ngIf="checkAffectingNature(stat) === -1"
+			style="color:red;"
+			title="Unfavorable nature">
+			&#10134; <!-- Unicode minus sign -->
+		</span>
+
+		({{ pokemon.baseStats[stat.shortName] }})
+
 		<span *ngIf="checkStatHighLow(stat.shortName) === 1"
 			style="color:green;"
 			title="Highest Base Stat">
-			✔
+			&#10004; <!-- Unicode checkmark sign -->
 		</span>
 		<span *ngIf="checkStatHighLow(stat.shortName) === -1"
 			style="color:red;"
 			title="Lowest Base Stat">
-			✘
+			&#10006; <!-- Unicode X mark sign -->
 		</span>
 		:
 
