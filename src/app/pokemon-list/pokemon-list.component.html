@@ -3,7 +3,7 @@
 	{{ pokemonList.length }} / {{ pokemonService.numberOfPokemon }}</h3>
 </div>
 <div>
-	<h2>POKEMON LIST:</h2>
+	<h2>Available Pokemon:</h2>
 
 	<table border="1">
 		<tr>
@@ -13,7 +13,7 @@
 			<th (click)="changeListSorting('name')">
 				Name <span *ngIf="sortListBy==='name'; then showOrder"></span>
 			</th>
-			<th *ngFor="let stat of pokemonService.statsList" (click)="changeListSorting(stat[0])">
+			<th *ngFor="let stat of pokemonService.statsList" (click)="changeListSorting(stat.shortName)">
 				{{ stat.name }} <span *ngIf="sortListBy===stat.shortName; then showOrder"></span>
 			</th>
 		</tr>
