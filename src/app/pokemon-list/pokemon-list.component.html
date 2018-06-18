@@ -1,11 +1,14 @@
-<div *ngIf="pokemonList.length < pokemonService.numberOfPokemon">
-	<h3>Please, wait while we load the pokemon data...
-	{{ pokemonList.length }} / {{ pokemonService.numberOfPokemon }}</h3>
-</div>
 <div>
 	<h2>
 		Available Pokemon:
 	</h2>
+
+	<div *ngIf="pokemonList.length < pokemonService.numberOfPokemon">
+		<h4>
+			Loading pokemon data...
+			{{ pokemonList.length }} / {{ pokemonService.numberOfPokemon }}
+		</h4>
+	</div>
 
 	<button (click)="clearFilters()">Clear all filters</button><br>
 	<label>Filter by name:

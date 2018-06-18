@@ -10,9 +10,6 @@ import { STATSLIST } from './stats-list';
 // Mock pokemon list
 import { POKEMONLIST } from './mock-pokemon';
 
-const NUMBER_OF_POKEMON = 25;
-const NUMBER_OF_NATURES = 25;
-
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +17,9 @@ const NUMBER_OF_NATURES = 25;
 export class PokemonService {
 
 	private baseApiUrl: string = 'https://pokeapi.co/api/v2/';
+
+	numberOfPokemon = 25;
+	numberOfNatures = 25;
 
 	selectedPokemon: Pokemon = null;
 
@@ -32,7 +32,7 @@ export class PokemonService {
 	getPokemon(): Observable<Pokemon[]> {
 /*		let pokemonList: Pokemon[] = [];
 
-		for (let i = 1; i <= NUMBER_OF_POKEMON; i++) {
+		for (let i = 1; i <= this.numberOfPokemon; i++) {
 			this.http.get(this.baseApiUrl + 'pokemon/' + i)
 			.subscribe( data => pokemonList.push(this.makePokemon(data)) );
 		}
@@ -44,7 +44,7 @@ export class PokemonService {
 	getNatures(): Observable<string[]> {
 		let naturesList: string[] = [];
 
-/*		for (let i = 1; i <= NUMBER_OF_NATURES; i++) {
+/*		for (let i = 1; i <= this.numberOfNatures; i++) {
 			this.http.get(this.baseApiUrl + 'nature/' + i)
 			.subscribe( data => naturesList.push(this.processNature(data)) );
 		}*/

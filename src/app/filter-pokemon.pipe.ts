@@ -32,72 +32,72 @@ export class FilterPokemonPipe implements PipeTransform {
 											});
 
 		// Filter by HP
-		if ( (!isNaN(minHp) && (minHp !== null) ) {
+		if ( (!isNaN(minHp)) && (minHp !== null) ) {
 			filteredPokemon = filteredPokemon.filter(pokemon => {
 													return ( pokemon.baseStats.hp >= minHp );
 												});
 		}
-		if ( (!isNaN(maxHp) && (maxHp !== null) ) {
+		if ( (!isNaN(maxHp)) && (maxHp !== null) ) {
 			filteredPokemon = filteredPokemon.filter(pokemon => {
 													return ( pokemon.baseStats.hp <= maxHp );
 												});
 		}
 
 		// Filter by attack
-		if ( (!isNaN(minAttack) && (minAttack !== null) ) {
+		if ( (!isNaN(minAttack)) && (minAttack !== null) ) {
 			filteredPokemon = filteredPokemon.filter(pokemon => {
 													return ( pokemon.baseStats.attack >= minAttack );
 												});
 		}
-		if ( (!isNaN(maxAttack) && (maxAttack !== null) ) {
+		if ( (!isNaN(maxAttack)) && (maxAttack !== null) ) {
 			filteredPokemon = filteredPokemon.filter(pokemon => {
 													return ( pokemon.baseStats.attack <= maxAttack );
 												});
 		}
 
 		// Filter by defense
-		if ( (!isNaN(minDefense) && (minDefense !== null) ) {
+		if ( (!isNaN(minDefense)) && (minDefense !== null) ) {
 			filteredPokemon = filteredPokemon.filter(pokemon => {
 													return ( pokemon.baseStats.defense >= minDefense );
 												});
 		}
-		if ( (!isNaN(maxDefense) && (maxDefense !== null) ) {
+		if ( (!isNaN(maxDefense)) && (maxDefense !== null) ) {
 			filteredPokemon = filteredPokemon.filter(pokemon => {
 													return ( pokemon.baseStats.defense <= maxDefense );
 												});
 		}
 
 		// Filter by special attack
-		if ( (!isNaN(minSpAttack) && (minSpAttack !== null) ) {
+		if ( (!isNaN(minSpAttack)) && (minSpAttack !== null) ) {
 			filteredPokemon = filteredPokemon.filter(pokemon => {
 													return ( pokemon.baseStats.spAttack >= minSpAttack );
 												});
 		}
-		if ( (!isNaN(maxSpAttack) && (maxSpAttack !== null) ) {
+		if ( (!isNaN(maxSpAttack)) && (maxSpAttack !== null) ) {
 			filteredPokemon = filteredPokemon.filter(pokemon => {
 													return ( pokemon.baseStats.spAttack <= maxSpAttack );
 												});
 		}
 
 		// Filter by special defense
-		if ( (!isNaN(minSpDefense) && (minSpDefense !== null) ) {
+		if ( (!isNaN(minSpDefense)) && (minSpDefense !== null) ) {
 			filteredPokemon = filteredPokemon.filter(pokemon => {
 													return ( pokemon.baseStats.spDefense >= minSpDefense );
 												});
 		}
-		if ( (!isNaN(maxSpDefense) && (maxSpDefense !== null) ) {
+		if ( (!isNaN(maxSpDefense)) && (maxSpDefense !== null) ) {
 			filteredPokemon = filteredPokemon.filter(pokemon => {
 													return ( pokemon.baseStats.spDefense <= maxSpDefense );
 												});
 		}
 
 		// Filter by speed
-		if ( (!isNaN(minSpeed) && (minSpeed !== null) ) {
+		if ( (!isNaN(minSpeed)) && (minSpeed !== null) ) {
 			filteredPokemon = filteredPokemon.filter(pokemon => {
 													return ( pokemon.baseStats.speed >= minSpeed );
 												});
 		}
-		if ( (!isNaN(maxSpeed) && (maxSpeed !== null) ) {
+		if ( (!isNaN(maxSpeed)) && (maxSpeed !== null) ) {
 			filteredPokemon = filteredPokemon.filter(pokemon => {
 													return ( pokemon.baseStats.speed <= maxSpeed );
 												});
