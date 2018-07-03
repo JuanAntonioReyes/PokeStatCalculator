@@ -8,21 +8,17 @@ Angular app that calculates pokemon stats (For testing purposes)
 - Clone or download repository
 
 - Install the dependencies
-
 ```
 npm install
 ```
-
 (For the sake of speed when loading, the app only load the info of the first gen pokemon, 151, from the pokeAPI. If you want to load more data, you only need to change the "numberOfPokemon" variable from "pokemon.service.ts" from 151 to the desired number of pokemon)
 (Sometimes it may not display some of the pokemon, but it is due the pokeAPI limitations in number of calls to it)
 
 ## Usage
 - Launch the project
-
 ```
 ng serve
 ```
-
 (The app will be served 'http://localhost:4200' with hot reload)
 
 - Wait until all the pokemon data is loaded
